@@ -59,7 +59,7 @@ endfunction
 syntax enable
 set bg=dark
 set t_Co=256
-colorscheme gruvbox
+colorscheme solarized
 set cc=120
 set textwidth=120
 set formatoptions+=t
