@@ -52,13 +52,13 @@ endfunction
 
 "Sets the interface
 "Enable syntax highlighting
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+"python from powerline.vim import setup as powerline_setup
+"python powerline_setup()
+"python del powerline_setup
 
 syntax enable
-set t_Co=256
 set bg=dark
+set t_Co=256
 colorscheme solarized
 set cc=120
 set textwidth=120
@@ -85,7 +85,7 @@ autocmd BufWinLeave * call clearmatches()
 autocmd BufRead,BufNewFile * syntax match Tab /\t/ containedin=ALL
 
 "Makes the screen dark
-highlight Normal ctermbg=None
+"highlight Normal ctermbg=None
 
 map j gj
 map k gk
