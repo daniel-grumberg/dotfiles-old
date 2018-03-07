@@ -1,0 +1,22 @@
+HOST emmentaler1
+HostName emmentaler1.ethz.ch
+User grumberg
+Port 8006
+
+HOST emmentaler2
+HostName emmentaler2.ethz.ch
+User grumberg
+Port 8006
+
+HOST emmentaler3
+HostName emmentaler3.ethz.ch
+User grumberg
+Port 8006
+
+HOST labs
+HostName shell1.doc.ic.ac.uk
+User dg1814
+
+HOST home
+HostName voxel21
+
