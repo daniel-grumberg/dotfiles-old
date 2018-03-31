@@ -24,7 +24,6 @@ endfunc
 autocmd BufWrite * :call DeleteTrailingWS()
 
 " Pressing \ss will toggle and untoggle spell checking
-" map <leader>ss :setlocal spell! spelllang=en_gb<cr>
 map <leader>ss :setlocal spell! spelllang=en_gb<cr>
 
 " Treat long lines as break lines (useful when moving around in them)
@@ -51,12 +50,8 @@ function! HasPaste()
 endfunction
 
 "Sets the interface
-"Enable syntax highlighting
-"python from powerline.vim import setup as powerline_setup
-"python powerline_setup()
-"python del powerline_setup
 
-syntax enable
+syntax on
 set bg=dark
 set t_Co=256
 colorscheme gruvbox
