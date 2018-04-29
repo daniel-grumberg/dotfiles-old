@@ -55,8 +55,8 @@ syntax on
 set bg=dark
 set t_Co=256
 colorscheme gruvbox
-set cc=120
-set textwidth=120
+set cc=80
+set textwidth=80
 set formatoptions+=t
 set ch=2
 set laststatus=2
