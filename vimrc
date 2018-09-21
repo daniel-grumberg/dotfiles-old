@@ -2,7 +2,6 @@
 execute pathogen#infect()
 filetype plugin indent on
 
-
 set number
 set ruler
 set relativenumber
