@@ -38,14 +38,14 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     osx
      helm
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
-            c-c++-enable-clang-support t
-            c-c)
-     auto-completion
-     cscope
+            c-c++-enable-clang-support t)
+     (cmake :variables cmake-enable-cmake-ide-support t)
+     (auto-completion :variables
+                      auto-completion-enable-snippets-in-popup t)
+
      semantic
      ;; better-defaults
      emacs-lisp
@@ -57,10 +57,12 @@ values."
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      syntax-checking
-     evil-commentary
      ;; version-control
      (spell-checking :variables spell-checking-enable-by-default nil)
      swift
+     latex
+     osx
+     evil-commentary
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -97,7 +99,7 @@ values."
    ;; (default t)
    dotspacemacs-elpa-https t
    ;; Maximum allowed time in seconds to contact an ELPA repository.
-   dotspacemacs-elpa-timeout 5
+   dotspacemacs-elpa-timeout 15
    ;; If non nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. Note that checking for
    ;; new versions works via git commands, thus it calls GitHub services
@@ -138,7 +140,8 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(gruvbox
+                         spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -384,15 +387,22 @@ you should place your code here."
  '(ansi-color-names-vector
    ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
  '(custom-safe-themes
-   (quote
-    ("f27c3fcfb19bf38892bc6e72d0046af7a1ded81f54435f9d4d09b3bff9c52fc1" default)))
+   '("f27c3fcfb19bf38892bc6e72d0046af7a1ded81f54435f9d4d09b3bff9c52fc1" default))
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
-   (quote
-    (swift-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data mmm-mode markdown-toc markdown-mode gh-md flyspell-correct-helm flyspell-correct auto-dictionary evil-ediff stickyfunc-enhance srefactor helm-cscope xcscope evil-commentary reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl gruvbox-theme autothemer disaster company-c-headers cmake-mode clang-format company-quickhelp smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit ghub with-editor company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+   '(treepy graphql company-auctex auctex-latexmk auctex swift-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data mmm-mode markdown-toc markdown-mode gh-md flyspell-correct-helm flyspell-correct auto-dictionary evil-ediff stickyfunc-enhance srefactor helm-cscope xcscope evil-commentary reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl gruvbox-theme autothemer disaster company-c-headers cmake-mode clang-format company-quickhelp smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit ghub with-editor company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
  '(safe-local-variable-values
-   (quote
-    ((eval let*
+   '((helm-ctest-dir . "~/Programming/Personnal/clang-build")
+     (helm-make-arguments . "-j10")
+     (cmake-ide-cmake-opts . "-GNinja -DCMAKE_BUILD_TYPE=Debug -DLLVM_ENABLE_MODULES=True")
+     (cmake-ide-build-dir . "~/Programming/Personnal/clang-build")
+     (cmake-ide-project-dir . "~/Programming/Personnal/llvm")
+     (helm-ctest-dir . "~/Project/build/")
+     (helm-make-arguments . "-j7")
+     (cmake-ide-cmake-opts . "-DCMAKE_BUILD_TYPE=Debug")
+     (cmake-ide-build-dir . "~/Project/build")
+     (cmake-ide-project-dir . "~/Project")
+     (eval let*
            ((x
              (dir-locals-find-file default-directory))
             (this-directory
@@ -402,26 +412,20 @@ you should place your code here."
                (file-name-directory x))))
            (unless
                (or
-                (featurep
-                 (quote swift-project-settings))
+                (featurep 'swift-project-settings)
                 (and
-                 (fboundp
-                  (quote tramp-tramp-file-p))
+                 (fboundp 'tramp-tramp-file-p)
                  (tramp-tramp-file-p this-directory)))
-             (add-to-list
-              (quote load-path)
-              (concat this-directory "utils")
-              :append)
+             (add-to-list 'load-path
+                          (concat this-directory "utils")
+                          :append)
              (let
                  ((swift-project-directory this-directory))
-               (require
-                (quote swift-project-settings))))
+               (require 'swift-project-settings)))
            (set
-            (make-local-variable
-             (quote swift-project-directory))
+            (make-local-variable 'swift-project-directory)
             this-directory))
-     (eval add-hook
-           (quote prog-mode-hook)
+     (eval add-hook 'prog-mode-hook
            (lambda nil
              (whitespace-mode 1))
            (not :APPEND)
@@ -430,10 +434,78 @@ you should place your code here."
      (swift-basic-offset . 2)
      (whitespace-style face lines indentation:space)
      (swift-syntax-check-fn . swift-project-swift-syntax-check)
-     (swift-find-executable-fn . swift-project-executable-find)))))
+     (swift-find-executable-fn . swift-project-executable-find))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:background nil)))))
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
+ '(custom-safe-themes
+   '("f27c3fcfb19bf38892bc6e72d0046af7a1ded81f54435f9d4d09b3bff9c52fc1" default))
+ '(evil-want-Y-yank-to-eol nil)
+ '(package-selected-packages
+   '(helm-ctest cmake-ide levenshtein treepy graphql company-auctex auctex-latexmk auctex swift-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data mmm-mode markdown-toc markdown-mode gh-md flyspell-correct-helm flyspell-correct auto-dictionary evil-ediff stickyfunc-enhance srefactor helm-cscope xcscope evil-commentary reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl gruvbox-theme autothemer disaster company-c-headers cmake-mode clang-format company-quickhelp smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit ghub with-editor company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
+ '(safe-local-variable-values
+   '((helm-ctest-dir . "~/Programming/Personnal/clang-build")
+     (helm-make-arguments . "-j10")
+     (cmake-ide-cmake-opts . "-GNinja -DCMAKE_BUILD_TYPE=Debug -DLLVM_ENABLE_MODULES=True")
+     (cmake-ide-build-dir . "~/Programming/Personnal/clang-build")
+     (cmake-ide-project-dir . "~/Programming/Personnal/llvm")
+     (helm-ctest-dir . "~/Project/build/")
+     (helm-make-arguments . "-j7")
+     (cmake-ide-cmake-opts . "-DCMAKE_BUILD_TYPE=Debug")
+     (cmake-ide-build-dir . "~/Project/build")
+     (cmake-ide-project-dir . "~/Project")
+     (eval let*
+           ((x
+             (dir-locals-find-file default-directory))
+            (this-directory
+             (if
+                 (listp x)
+                 (car x)
+               (file-name-directory x))))
+           (unless
+               (or
+                (featurep 'swift-project-settings)
+                (and
+                 (fboundp 'tramp-tramp-file-p)
+                 (tramp-tramp-file-p this-directory)))
+             (add-to-list 'load-path
+                          (concat this-directory "utils")
+                          :append)
+             (let
+                 ((swift-project-directory this-directory))
+               (require 'swift-project-settings)))
+           (set
+            (make-local-variable 'swift-project-directory)
+            this-directory))
+     (eval add-hook 'prog-mode-hook
+           (lambda nil
+             (whitespace-mode 1))
+           (not :APPEND)
+           :BUFFER-LOCAL)
+     (tab-always-indent . t)
+     (swift-basic-offset . 2)
+     (whitespace-style face lines indentation:space)
+     (swift-syntax-check-fn . swift-project-swift-syntax-check)
+     (swift-find-executable-fn . swift-project-executable-find))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:background nil)))))
+)
