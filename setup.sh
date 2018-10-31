@@ -26,10 +26,11 @@ function canonicalize {
 
 DOTFILES=$(dirname -- $(realpath "$(canonicalize)"))
 
-[ -n "$ENV_SETUP" ] && exit 0
-
-echo "source ${DOTFILES}/bashrc" >> ~/.bashrc
-echo "export ENV_SETUP=true" >> ~/.bashrc
+if [[ -e "${DOTFILES}/setup.lock" ]]
+then
+    echo "This machine was already setup. This was determined using setup.lock."
+    exit 1
+fi
 
 ln -Fs "${DOTFILES}/vim" ~/.vim
 ln -Fs "${DOTFILES}/vimrc" ~/.vimrc
@@ -37,4 +38,8 @@ ln -Fs "${DOTFILES}/spacemacs" ~/.spacemacs
 
 mkdir -p ~/.ssh
 cat "${DOTFILES}/ssh_config" >> ~/.ssh/config
+
+echo "source ${DOTFILES}/bashrc" >> ~/.bashrc
+
+touch "${DOTFILES}/setup.lock"
 
