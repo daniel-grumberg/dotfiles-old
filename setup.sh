@@ -43,7 +43,7 @@ echo "source ${DOTFILES}/bashrc" >> ~/.bashrc
 
 if [[ $(uname -r) =~ "ARCH" ]]
 then
-    echo "source ${DOTFILES}/arch_profile_extensions.sh" >> ~/.bash_profile
+    "${DOTFILES}/system-specific/arch_setup.sh" "${DOTFILES}"
 fi
 
 touch "${DOTFILES}/setup.lock"

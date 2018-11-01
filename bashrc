@@ -22,9 +22,6 @@ color_my_prompt
 ###  Aliases ###########################################################################################################
 ########################################################################################################################
 
-alias setclip="xclip -selection c"
-alias getclip="xclip -selection c -o"
-
 #Force 256 color support in tmux, mainly so that gruvbox does not look crap
 alias tmux="tmux -2"
 

@@ -2,6 +2,8 @@
 execute pathogen#infect()
 filetype plugin indent on
 
+" Needed on some Linuxen to disable stupid bell
+set visualbell
 set number
 set ruler
 set relativenumber
@@ -79,7 +81,7 @@ autocmd BufWinLeave * call clearmatches()
 autocmd BufRead,BufNewFile * syntax match Tab /\t/ containedin=ALL
 
 "Makes the screen dark
-"highlight Normal ctermbg=None
+highlight Normal ctermbg=None
 
 map j gj
 map k gk
@@ -88,7 +90,6 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-
 
 "Vimwiki stuff
 let wiki_1 = {}
