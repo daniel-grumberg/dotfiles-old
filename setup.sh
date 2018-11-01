@@ -41,5 +41,10 @@ cat "${DOTFILES}/ssh_config" >> ~/.ssh/config
 
 echo "source ${DOTFILES}/bashrc" >> ~/.bashrc
 
+if [[ $(uname -r) =~ "ARCH" ]]
+then
+    echo "source ${DOTFILES}/arch_profile_extensions.sh" >> ~/.bash_profile
+fi
+
 touch "${DOTFILES}/setup.lock"
 
