@@ -2,8 +2,6 @@
 
 set -e
 
-# Needs to be duplicated because we need it here to make sure we are being
-# called from the right place
 function canonicalize {
     local TARGET_FILE=$(which $0)
     # Check if we got something in the path, if not use $0 as a starting point
@@ -25,28 +23,4 @@ function canonicalize {
     local PHYS_DIR=$(pwd -P)
     echo "${PHYS_DIR}/${TARGET_FILE}"
 }
-
-DOTFILES=$(dirname -- $(realpath "$(canonicalize)"))
-
-if [[ -e "${DOTFILES}/setup.lock" ]]
-then
-    echo "This machine was already setup. This was determined using setup.lock."
-    exit 1
-fi
-
-ln -Fs "${DOTFILES}/vim" ~/.vim
-ln -Fs "${DOTFILES}/vimrc" ~/.vimrc
-ln -Fs "${DOTFILES}/spacemacs" ~/.spacemacs
-
-mkdir -p ~/.ssh
-cat "${DOTFILES}/ssh_config" >> ~/.ssh/config
-
-echo "source ${DOTFILES}/bashrc" >> ~/.bashrc
-
-if [[ $(uname -r) =~ "ARCH" ]]
-then
-    "${DOTFILES}/system-specific/arch_linux.d/setup.sh" "${DOTFILES}/utils.sh"
-fi
-
-touch "${DOTFILES}/setup.lock"
 
