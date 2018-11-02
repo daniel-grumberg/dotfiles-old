@@ -1,3 +1,8 @@
 /vim/bundle/vimwiki/
 vim/.netrwhist
 setup.lock
+
+**/*.old
+**/*.log
+**/*.xbel
+**/htoprc
