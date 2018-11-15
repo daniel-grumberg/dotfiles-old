@@ -40,7 +40,7 @@ values."
      ;; ----------------------------------------------------------------
      helm
      (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode
+            ;c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
      swift
      python
@@ -257,6 +257,8 @@ values."
    dotspacemacs-show-transient-state-color-guide t
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
    dotspacemacs-mode-line-unicode-symbols t
+   ;; If non nil specififes the mode-line theme
+   dotspacemacs-mode-line-theme 'vanilla
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
@@ -471,7 +473,10 @@ This function is called at the very end of Spacemacs initialization."
     (yapfify xterm-color vagrant-tramp vagrant shell-pop pyvenv pytest pyenv-mode py-isort pippel pipenv pip-requirements multi-term live-py-mode importmagic epc ctable concurrent deferred helm-pydoc eshell-z eshell-prompt-extras esh-help cython-mode company-anaconda anaconda-mode pythonic gruvbox-dark-hard-theme-theme treepy graphql company-auctex auctex-latexmk auctex swift-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data mmm-mode markdown-toc markdown-mode gh-md flyspell-correct-helm flyspell-correct auto-dictionary evil-ediff stickyfunc-enhance srefactor helm-cscope xcscope evil-commentary reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl gruvbox-theme autothemer disaster company-c-headers cmake-mode clang-format company-quickhelp smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit ghub with-editor company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(safe-local-variable-values
    (quote
-    ((cmake-ide-project-dir . "./")
+    ((cmake-ide-cmake-opts . "-GNinja ..")
+     (cmake-ide-build-dir . "/home/dang/Documents/PhD/varan-dev/varan/build")
+     (cmake-ide-project-dir . "/home/dang/Documents/PhD/varan-dev/varan")
+     (cmake-ide-project-dir . "./")
      (helm-ctest-dir . "~/Programming/Personnal/clang-build")
      (helm-make-arguments . "-j10")
      (cmake-ide-cmake-opts . "-GNinja -DCMAKE_BUILD_TYPE=Debug -DLLVM_ENABLE_MODULES=True")
