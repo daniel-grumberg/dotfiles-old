@@ -6,3 +6,4 @@ setup.lock
 **/*.log
 **/*.xbel
 **/htoprc
+**/local/share
