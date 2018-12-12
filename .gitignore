@@ -7,3 +7,6 @@ setup.lock
 **/*.xbel
 **/htoprc
 **/local/share
+**/config/dconf
+**/config/enchant
+**/config/gtk*
