@@ -53,7 +53,7 @@ endfunction
 "Sets the interface
 
 syntax on
-set bg=dark
+set bg=light
 set t_Co=256
 colorscheme gruvbox
 set cc=80

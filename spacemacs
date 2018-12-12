@@ -60,7 +60,7 @@ values."
             shell-default-position 'bottom)
      syntax-checking
      (spell-checking :variables spell-checking-enable-by-default nil)
-     latex
+     (latex :variabels latex-enable-auto-fill f)
      osx
      evil-commentary
      )
@@ -140,7 +140,7 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(gruvbox-dark-hard
+   dotspacemacs-themes '(gruvbox-light-medium
                          spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
@@ -318,7 +318,8 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (setq ispell-program-name "/usr/local/bin/aspell")
+  (setq TeX-view-program-selection '((output-pdf "MuPDF"))
+        TeX-view-program-list '(("MuPDF" "mupdf %o" "mupdf")))
   )
 
 (defun dotspacemacs/user-config ()
@@ -337,8 +338,6 @@ you should place your code here."
     (if (buffer-file-name)
         (abbreviate-file-name (buffer-file-name))
       (powerline-buffer-id)))
-  ;; Load gruvbox now after loading the package so that it does not die on me
-  (spacemacs/load-theme 'gruvbox-dark-hard)
   ;;Add llvm c-style
   (c-add-style "llvm.org"
                '("gnu"
@@ -377,6 +376,7 @@ you should place your code here."
   (global-visual-line-mode t)
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -462,21 +462,23 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
  '(custom-safe-themes
    (quote
-    ("f27c3fcfb19bf38892bc6e72d0046af7a1ded81f54435f9d4d09b3bff9c52fc1" default)))
+    ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "7f89ec3c988c398b88f7304a75ed225eaac64efa8df3638c815acc563dfd3b55" "595617a3c537447aa7e76ce05c8d43146a995296ea083211225e7efc069c598f" "3da031b25828b115c6b50bb92a117f5c0bbd3d9d0e9ba5af3cd2cb9db80db1c2" "f27c3fcfb19bf38892bc6e72d0046af7a1ded81f54435f9d4d09b3bff9c52fc1" default)))
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (yapfify xterm-color vagrant-tramp vagrant shell-pop pyvenv pytest pyenv-mode py-isort pippel pipenv pip-requirements multi-term live-py-mode importmagic epc ctable concurrent deferred helm-pydoc eshell-z eshell-prompt-extras esh-help cython-mode company-anaconda anaconda-mode pythonic gruvbox-dark-hard-theme-theme treepy graphql company-auctex auctex-latexmk auctex swift-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data mmm-mode markdown-toc markdown-mode gh-md flyspell-correct-helm flyspell-correct auto-dictionary evil-ediff stickyfunc-enhance srefactor helm-cscope xcscope evil-commentary reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl gruvbox-theme autothemer disaster company-c-headers cmake-mode clang-format company-quickhelp smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit ghub with-editor company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (ws-butler winum volatile-highlights vi-tilde-fringe uuidgen toc-org symon string-inflection spaceline-all-the-icons spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode password-generator paradox spinner overseer org-bullets open-junk-file neotree nameless move-text macrostep lorem-ipsum link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-xref helm-themes helm-swoop helm-purpose window-purpose imenu-list helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state iedit evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens smartparens paredit evil-args evil-anzu anzu eval-sexp-fu highlight elisp-slime-nav editorconfig dumb-jump doom-modeline eldoc-eval shrink-path all-the-icons memoize f dash s define-word counsel-projectile projectile counsel swiper ivy pkg-info epl column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile packed aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup which-key use-package pcre2el org-plus-contrib hydra font-lock+ evil goto-chg undo-tree dotenv-mode diminish bind-map bind-key async)))
+ '(pdf-view-midnight-colors (quote ("#282828" . "#f2e5bc")))
  '(safe-local-variable-values
    (quote
     ((cmake-ide-cmake-opts . "-GNinja ..")
      (cmake-ide-build-dir . "/home/dang/Documents/PhD/varan-dev/varan/build")
      (cmake-ide-project-dir . "/home/dang/Documents/PhD/varan-dev/varan")
-     (cmake-ide-project-dir . "./")
      (helm-ctest-dir . "~/Programming/Personnal/clang-build")
      (helm-make-arguments . "-j10")
      (cmake-ide-cmake-opts . "-GNinja -DCMAKE_BUILD_TYPE=Debug -DLLVM_ENABLE_MODULES=True")

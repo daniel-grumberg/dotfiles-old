@@ -1,52 +1,41 @@
 urxvt.termName: rxvt-unicode
-urxvt.background: black
-urxvt.foreground: gray
-
-urxvt.font: xft:Source Code Pro:pixelsize=13
-urxvt.boldFont: xft:Source Code Pro:pixelsize=13:weight=bold
 
 urxvt.saveLines: 10000
+urxvt.cursorBlink: true
 
 urxvt.perl-ext-common: default,matcher,font-size
 
 urxvt.urlLauncher: /usr/bin/firefox
 urxvt.matcher.button: C1
 
-urxvt.cursorBlink: true
+urxvt.font: xft:Source Code Pro:pixelsize=13
+urxvt.boldFont: xft:Source Code Pro:pixelsize=13:weight=bold
 
-! special
-*.foreground:   #c5c8c6
-*.background:   #1d1f21
-*.cursorColor:  #c5c8c6
-
-! black
-*.color0:       #282a2e
-*.color8:       #373b41
-
-! red
-*.color1:       #a54242
-*.color9:       #cc6666
-
-! green
-*.color2:       #8c9440
-*.color10:      #b5bd68
-
-! yellow
-*.color3:       #de935f
-*.color11:      #f0c674
-
-! blue
-*.color4:       #5f819d
-*.color12:      #81a2be
-
-! magenta
-*.color5:       #85678f
-*.color13:      #b294bb
-
-! cyan
-*.color6:       #5e8d87
-*.color14:      #8abeb7
-
-! white
-*.color7:       #707880
-*.color15:      #c5c8c6
+! hard contrast: *background: #f9f5d7
+*background: #fbf1c7
+! soft contrast: *background: #f2e5bc
+*foreground: #3c3836
+! Black + DarkGrey
+*color0:  #fdf4c1
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #9d0006
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #79740e
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #b57614
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #076678
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #8f3f71
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #427b58
+! LightGrey + White
+*color7:  #7c6f64
+*color15: #3c3836
