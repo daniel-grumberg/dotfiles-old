@@ -10,3 +10,4 @@ setup.lock
 **/config/dconf
 **/config/enchant
 **/config/gtk*
+emacs.d/straight/
