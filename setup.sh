@@ -37,7 +37,7 @@ fi
 
 ln -Fs "${DOTFILES}/vim" ~/.vim
 ln -Fs "${DOTFILES}/vimrc" ~/.vimrc
-ln -Fs "${DOTFILES}/spacemacs" ~/.spacemacs
+ln -Fs "${DOTFILES}/emacs.d" ~/.emacs.d
 
 mkdir -p ~/.ssh
 cat "${DOTFILES}/ssh_config" >> ~/.ssh/config

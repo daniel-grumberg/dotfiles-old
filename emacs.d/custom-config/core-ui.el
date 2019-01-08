@@ -1,3 +1,5 @@
+(require 'dang/core-editor "core-editor")
+
 ;; Remove all the GUI elements
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -18,3 +20,14 @@
 (use-package gruvbox-theme
   :config
   (load-theme 'gruvbox-light-medium t))
+
+;; Add mappings for text display manipulation
+(dang/text/def
+ "i" '((lambda ()
+         (interactive)
+         (text-scale-increase 1))
+       :wk "increase-text-scale")
+ "d" '((lambda ()
+         (interactive)
+         (text-scale-decrease 1))
+       :wk "decrease-text-scale"))
