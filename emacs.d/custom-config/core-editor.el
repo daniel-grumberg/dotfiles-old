@@ -1,6 +1,6 @@
 (provide 'dang/core-editor)
 
-;; Prefered editor behaviors, this prevents backup files on auto-saves
+;; Preferred editor behaviors, this prevents backup files on auto-saves
 (setq auto-save-list-prefix nil
       make-backup-files nil
       auto-save-default nil
@@ -19,7 +19,7 @@
   :config
   (which-key-mode 1))
 
-;; Add support for customising key-bindings
+;; Add support for customizing key-bindings
 ;; Here we add support for the basic key-definers (prefixes)
 (use-package general
   :init
@@ -188,3 +188,43 @@ The forms of the generated symbols is:
   (evil-collection-setup-minibuffer t)
   :config
   (evil-collection-init))
+
+;; Get Hydra for modal key-bindings
+(use-package hydra)
+
+(use-package flyspell
+  :init
+  ;; Ensure that spellcheckers are found on macOS
+  (setq ispell-dictionary "american")
+  (when (eq system-type 'darwin)
+    (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+    (setq exec-path (append exec-path '("/usr/local/bin")))
+    (setq ispell-program-name "aspell"))
+  :custom
+  (flyspell-issue-message-flag nil)
+  (flyspell-issue-welcome-flag nil))
+
+(use-package flyspell-correct-ivy
+  :after flyspell
+  :custom (flyspell-correct-interface 'flyspell-correct-ivy)
+  :config
+  (defhydra dang/hydra-spelling nil
+  "
+  ^
+  ^Spelling^              ^Errors^            ^Checker^
+  ^────────^──────────────^──────^────────────^───────^───────
+  _q_ quit                _<_ previous        _c_ correction
+  _f_ flyspell-mode       _>_ next            _d_ dictionary
+  _p_ flyspell-prog-mode  ^^                  _b_ check-buffer
+  ^^                      ^^                  ^^
+  "
+  ("q" nil)
+  ("<" flyspell-correct-previous)
+  (">" flyspell-correct-next)
+  ("c" ispell)
+  ("d" ispell-change-dictionary)
+  ("f" flyspell-mode)
+  ("p" flyspell-prog-mode)
+  ("b" flyspell-buffer))
+  (dang/text/def
+    "s" '(dang/hydra-spelling/body :wk "spellcheck-menu")))
