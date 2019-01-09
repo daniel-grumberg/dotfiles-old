@@ -13,48 +13,63 @@
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 
+;; Make the editor more discoverable (provides a popup menu for incomplete chord prefixes)
+(use-package which-key
+  :init
+  :config
+  (which-key-mode 1))
+
 ;; Add support for customising key-bindings
 ;; Here we add support for the basic key-definers (prefixes)
 (use-package general
   :init
+  (general-auto-unbind-keys)
   (general-create-definer dang/leader/def
-    :states '(motion emacs)
+    :states '(normal visual insert)
+    :keymaps 'override
     :prefix "SPC"
-    :non-local-prefix "M-SPC")
+    :non-normal-prefix "M-SPC")
 
   (dang/leader/def
-    "" nil
-    "l" '(nil :wk "local")
     "TAB" '((lambda ()
               (interactive)
               (switch-to-buffer (other-buffer)))
             :wk "previous-buffer"))
 
   (general-create-definer dang/local/def
-    :states '(motion emacs)
-    :prefix "SPC l"
-    :non-local-prefix "M-SPC l"
-    :wk-full-keys nil)
+    :states '(normal visual insert)
+    :prefix "SPC"
+    :non-normal-prefix "M-SPC"
+    :infix "l")
 
-;;  (defmacro dang/generate-override-keymaps (inf pref-command pref-map help)
-;;    `(dang/leader/def
-;;       :infix ,inf
-;;       :prefix-command ',pref-command
-;;       :prefix-map ',pref-map
-;;       :wk-full-keys nil
-;;       "" '(:ignore t :wk ,help)))
-;;
-;;  ;; Create mapping functions for search related functionality
-;;  (dang/generate-override-keymaps "w" dang/windows/command dang/windows/map "windows")
-  (dang/leader/def
-   :infix "w"
-   :prefix-command 'dang/windows/command
-   :prefix-map 'dang/windows/map
-   :wk-full-keys nil
-    "" '(:ignore t :wk "windows"))
+  (dang/local/def
+    "" '(nil :wk "local"))
 
-  (general-create-definer dang/windows/def
-    :keymaps 'dang/windows/map)
+  (defmacro dang/generate-override-keymap (inf name)
+    "Generate command, keymap and definer for global override editor prefixes
+The forms of the generated symbols is:
+- infix key: INF
+- commands: dang/NAME/command
+- keymap: dang/NAME/map
+- definer: dang/NAME/def"
+    `(progn
+        (dang/leader/def
+          :infix ,inf
+          :prefix-command ',(intern (concat "dang/" name "/command"))
+          :prefix-map ',(intern (concat "dang/" name "/map"))
+          "" '(:ignore t :wk ,name))
+        (general-create-definer ,(intern (concat "dang/" name "/def"))
+          :wk-full-keys nil
+          :keymaps ',(intern (concat "dang/" name "/map")))))
+
+  ;; Cannot be looped as the NAME string needs to be the macro argument to be
+  ;; able to generate the symbols
+  (dang/generate-override-keymap "w" "windows")
+  (dang/generate-override-keymap "s" "search")
+  (dang/generate-override-keymap "b" "buffers")
+  (dang/generate-override-keymap "h" "help")
+  (dang/generate-override-keymap "f" "files")
+  (dang/generate-override-keymap "t" "text")
 
   (dang/windows/def
     "b" 'balance-windows
@@ -66,45 +81,12 @@
     "k" '(evil-window-up :wk "window-up")
     "l" '(evil-window-right :wk "window-right"))
 
-  ;; Create mapping functions for search related functionality
-  (dang/leader/def
-   :infix "s"
-   :prefix-command 'dang/search/command
-   :prefix-map 'dang/search/map
-   :wk-full-keys nil
-   "" '(:ignore t :wk "search"))
-
-  (general-create-definer dang/search/def
-    :keymaps 'dang/search/map)
-
-  ;; Create mapping functions for buffers related functionality
-  (dang/leader/def
-   :infix "b"
-   :prefix-command 'dang/buffers/command
-   :prefix-map 'dang/buffers/map
-   :wk-full-keys nil
-    "" '(:ignore t :wk "buffers"))
-
-  (general-create-definer dang/buffers/def
-    :keymaps 'dang/buffers/map)
-
   (dang/buffers/def
     "k" 'kill-buffer
     "K" '((lambda ()
             (interactive)
             (kill-buffer nil))
           :wk "kill-current-buffer"))
-
-  ;; Create mapping functions for help related functionality
-  (dang/leader/def
-   :infix "h"
-   :prefix-command 'dang/help/command
-   :prefix-map 'dang/help/map
-   :wk-full-keys nil
-    "" '(:ignore t :wk "help"))
-
-  (general-create-definer dang/help/def
-    :keymaps 'dang/help/map)
 
   (dang/help/def
     "v" 'describe-variable
@@ -115,42 +97,14 @@
     "m" 'describe-mode
     "p" 'describe-package)
 
-  ;; Create mapping functions for file related functionality
-  (dang/leader/def
-   :infix "f"
-   :prefix-command 'dang/files/command
-   :prefix-map 'dang/files/map
-   :wk-full-keys nil
-   "" '(:ignore t :wk "files"))
-
-  (general-create-definer dang/files/def
-    :keymaps 'dang/files/map)
-
   (dang/files/def
     "o" '(find-file :wk "open-file")
     "d" 'delete-file
     "s" '(save-buffer :wk "save-file"))
 
-  ;; Create mapping functions for text related functionality
-  (dang/leader/def
-   :infix "t"
-   :prefix-command 'dang/text/command
-   :prefix-map 'dang/text/map
-   :wk-full-keys nil
-   "" '(:ignore t :wk "text"))
-
-  (general-create-definer dang/text/def
-    :keymaps 'dang/text/map)
-
   (dang/text/def
     "f" 'indent-region
-    "F" '(indent-according-to-mode :wk "indent-line"))
-
-  (defun dang/show-msg ()
-    (interactive)
-    (message "emacs-lisp-mode-map"))
-
-  (dang/local/def 'emacs-lisp-mode-map "z" 'dang/show-msg))
+    "F" '(indent-according-to-mode :wk "indent-line")))
 
 ;; Display buffer list with groupings
 (use-package ibuffer
@@ -234,9 +188,3 @@
   (evil-collection-setup-minibuffer t)
   :config
   (evil-collection-init))
-
-;; Make the editor more discoverable (provides a popup menu for incomplete chord prefixes)
-(use-package which-key
-  :init
-  :config
-  (which-key-mode 1))
