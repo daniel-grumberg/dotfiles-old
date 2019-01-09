@@ -1,6 +1,7 @@
 (require 'dang/core-editor "core-editor")
 
 ;; Remove all the GUI elements
+(setq inhibit-startup-screen t)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
@@ -12,7 +13,7 @@
 ;; macOS specific UI tweak
 (when (eq system-type 'darwin)
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-  (add-to-list 'default-frame-alist '(ns-appearance . dark))
+  (add-to-list 'default-frame-alist '(ns-appearance . light))
   (setq ns-use-proxy-icon  nil
 	frame-title-format nil))
 
