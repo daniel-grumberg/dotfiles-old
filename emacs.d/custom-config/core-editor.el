@@ -17,22 +17,24 @@
 ;; Here we add support for the basic key-definers (prefixes)
 (use-package general
   :init
-  (general-auto-unbind-keys)
-
   (general-create-definer dang/leader/def
-    :states '(normal)
+    :states '(motion emacs)
     :prefix "SPC"
     :non-local-prefix "M-SPC")
 
-  (general-create-definer dang/local-leader/def
-    :prefix "SPC l"
-    :prefix "M-SPC l")
-
   (dang/leader/def
+    "" nil
+    "l" '(nil :wk "local")
     "TAB" '((lambda ()
               (interactive)
               (switch-to-buffer (other-buffer)))
             :wk "previous-buffer"))
+
+  (general-create-definer dang/local/def
+    :states '(motion emacs)
+    :prefix "SPC l"
+    :non-local-prefix "M-SPC l"
+    :wk-full-keys nil)
 
 ;;  (defmacro dang/generate-override-keymaps (inf pref-command pref-map help)
 ;;    `(dang/leader/def
@@ -148,7 +150,7 @@
     (interactive)
     (message "emacs-lisp-mode-map"))
 
-  (general-def 'emacs-lisp-mode-map "z" 'dang/show-msg))
+  (dang/local/def 'emacs-lisp-mode-map "z" 'dang/show-msg))
 
 ;; Display buffer list with groupings
 (use-package ibuffer

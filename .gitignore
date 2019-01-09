@@ -11,4 +11,4 @@ setup.lock
 **/config/enchant
 **/config/gtk*
 emacs.d/straight/
-emacs.d/recentf/
+emacs.d/recentf
