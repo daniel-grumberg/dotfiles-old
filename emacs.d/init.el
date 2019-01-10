@@ -4,3 +4,4 @@
 (load "package-management")
 (load "core-editor")
 (load "core-ui")
+(load "spellchecking")
