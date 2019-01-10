@@ -1,5 +1,11 @@
 (provide 'dang/core-editor)
 
+;; If Emacs is started via GUI toolkit it won't source the startup scripts which might cause issues (especially on macOS)
+(use-package exec-path-from-shell
+  :demand t
+  :config
+  (exec-path-from-shell-initialize))
+
 ;; Preferred editor behaviors, this prevents backup files on auto-saves
 (setq auto-save-list-prefix nil
       make-backup-files nil
@@ -15,6 +21,7 @@
 
 ;; Make the editor more discoverable (provides a popup menu for incomplete chord prefixes)
 (use-package which-key
+  :demand t
   :init
   :config
   (which-key-mode 1))
@@ -22,8 +29,8 @@
 ;; Add support for customizing key-bindings
 ;; Here we add support for the basic key-definers (prefixes)
 (use-package general
-  :init
-  (general-auto-unbind-keys)
+  :demand t
+  :config
   (general-create-definer dang/leader/def
     :states '(normal visual insert)
     :keymaps 'override
@@ -130,7 +137,7 @@ The forms of the generated symbols is:
   (add-hook 'ibuffer-mode-hook
 	    '(lambda ()
 	       (ibuffer-auto-mode 1)
-	       (ibuffer-switch-to-saved-filter-groups "home"))))
+	       (ibuffer-switch-to-saved-filter-groups "default"))))
 
 ;; Select and act on windows in tree-style
 (use-package ace-window
@@ -150,6 +157,7 @@ The forms of the generated symbols is:
 
 ;; Narrowing completions across the editor using ivy
 (use-package ivy
+  :demand t
   :general
   (dang/buffers/def
     "g" '(ivy-switch-buffer :wk "goto-buffer"))
@@ -160,12 +168,13 @@ The forms of the generated symbols is:
   (setq ivy-count-format "(%d/%d) ")
   (setq ivy-wrap t))
 
-;; Enable narrowing completion optimised incremental search
+;; Enable narrowing completion optimized incremental search
 (use-package swiper
   :general ('normal "/" '(swiper :wk "swipe")))
 
 ;; Enable various narrowing completion enabled commands
 (use-package counsel
+  :demand t
   :general
   (dang/search/def
     "/" '(counsel-grep-or-swiper :wk "rg-or-swipe")
@@ -176,6 +185,7 @@ The forms of the generated symbols is:
 
 ;; Install and enable evil-mode to get vim emulation goodness
 (use-package evil
+  :demand t
   :init
   (setq evil-want-integration t)   ;; Make sure we can use evil pervasively
   (setq evil-want-keybinding nil)  ;; Disable default evilified keybindings so we can rely on evil-collection
@@ -183,6 +193,7 @@ The forms of the generated symbols is:
   (evil-mode 1))
 
 (use-package evil-collection
+  :demand t
   :after evil
   :custom
   (evil-collection-setup-minibuffer t)
@@ -190,41 +201,12 @@ The forms of the generated symbols is:
   (evil-collection-init))
 
 ;; Get Hydra for modal key-bindings
-(use-package hydra)
+(use-package hydra
+  :demand t)
 
-(use-package flyspell
+;; Enable completions globally
+(use-package company
   :init
-  ;; Ensure that spellcheckers are found on macOS
-  (setq ispell-dictionary "american")
-  (when (eq system-type 'darwin)
-    (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-    (setq exec-path (append exec-path '("/usr/local/bin")))
-    (setq ispell-program-name "aspell"))
-  :custom
-  (flyspell-issue-message-flag nil)
-  (flyspell-issue-welcome-flag nil))
-
-(use-package flyspell-correct-ivy
-  :after flyspell
-  :custom (flyspell-correct-interface 'flyspell-correct-ivy)
-  :config
-  (defhydra dang/hydra-spelling nil
-  "
-  ^
-  ^Spelling^              ^Errors^            ^Checker^
-  ^────────^──────────────^──────^────────────^───────^───────
-  _q_ quit                _<_ previous        _c_ correction
-  _f_ flyspell-mode       _>_ next            _d_ dictionary
-  _p_ flyspell-prog-mode  ^^                  _b_ check-buffer
-  ^^                      ^^                  ^^
-  "
-  ("q" nil)
-  ("<" flyspell-correct-previous)
-  (">" flyspell-correct-next)
-  ("c" ispell)
-  ("d" ispell-change-dictionary)
-  ("f" flyspell-mode)
-  ("p" flyspell-prog-mode)
-  ("b" flyspell-buffer))
-  (dang/text/def
-    "s" '(dang/hydra-spelling/body :wk "spellcheck-menu")))
+  (setq dang/default-company-backends '(company-capf company-files))
+  (setq company-backends dang/default-company-backends)
+  :hook ((after-init . global-company-mode)))
