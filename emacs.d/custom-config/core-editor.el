@@ -77,6 +77,7 @@ The forms of the generated symbols is:
   (dang/generate-override-keymap "h" "help")
   (dang/generate-override-keymap "f" "files")
   (dang/generate-override-keymap "t" "text")
+  (dang/generate-override-keymap "c" "completions")
 
   (dang/windows/def
     "b" 'balance-windows
@@ -206,7 +207,12 @@ The forms of the generated symbols is:
 
 ;; Enable completions globally
 (use-package company
+  :demand t
   :init
   (setq dang/default-company-backends '(company-capf company-files))
   (setq company-backends dang/default-company-backends)
+  :general
+  (dang/completions/def
+    "c" 'company-complete
+    "o" 'company-other-backend)
   :hook ((after-init . global-company-mode)))
