@@ -10,6 +10,9 @@
 ;; Set the default font
 (add-to-list 'default-frame-alist '(font . "Source Code Pro 12"))
 
+;; Ensure we start up in full screen mode
+(add-to-list 'default-frame-alist '(fullscreen . fullscreen))
+
 ;; macOS specific UI tweak
 (when (eq system-type 'darwin)
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
