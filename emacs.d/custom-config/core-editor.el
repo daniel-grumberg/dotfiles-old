@@ -19,6 +19,8 @@
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 
+(global-display-line-numbers-mode 1)
+
 ;; Make the editor more discoverable (provides a popup menu for incomplete chord prefixes)
 (use-package which-key
   :demand t
