@@ -16,6 +16,8 @@
 
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
 
+(global-visual-line-mode)
+
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 

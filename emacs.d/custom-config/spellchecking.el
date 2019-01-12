@@ -73,3 +73,5 @@
   ("f" flyspell-mode)
   ("p" flyspell-prog-mode)
   ("b" flyspell-buffer)))
+
+(provide 'dang/spellchecking)

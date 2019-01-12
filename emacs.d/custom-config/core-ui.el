@@ -11,12 +11,12 @@
 (add-to-list 'default-frame-alist '(font . "Source Code Pro 12"))
 
 ;; Ensure we start up in full screen mode
-(add-to-list 'default-frame-alist '(fullscreen . fullscreen))
 
 ;; macOS specific UI tweak
 (when (eq system-type 'darwin)
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . light))
+  (add-to-list 'default-frame-alist '(fullscreen . fullscreen))
   (setq ns-use-proxy-icon  nil
 	frame-title-format nil))
 
@@ -35,3 +35,5 @@
          (interactive)
          (text-scale-decrease 1))
        :wk "decrease-text-scale"))
+
+(provide 'dang/core-ui)

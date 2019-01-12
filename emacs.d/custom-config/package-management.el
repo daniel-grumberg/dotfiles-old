@@ -16,3 +16,5 @@
 ;; Install and configure use-package to use straight under the hood
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
+
+(provide 'dang/package-management)
