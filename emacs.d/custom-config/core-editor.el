@@ -49,14 +49,13 @@
 
   (general-create-definer dang/local/def
     :states '(normal visual insert)
-    :prefix "SPC"
-    :non-normal-prefix "M-SPC"
-    :infix "l")
+    :prefix "SPC l"
+    :non-normal-prefix "M-SPC l")
 
   (dang/local/def
     "" '(nil :wk "local"))
 
-  (defmacro dang/generate-override-keymap (inf name)
+  (defmacro dang/generate-override-keymap (definer inf name)
     "Generate command, keymap and definer for global override editor prefixes
 The forms of the generated symbols is:
 - infix key: INF
@@ -64,7 +63,7 @@ The forms of the generated symbols is:
 - keymap: dang/NAME/map
 - definer: dang/NAME/def"
     `(progn
-        (dang/leader/def
+        (,definer
           :infix ,inf
           :prefix-command ',(intern (concat "dang/" name "/command"))
           :prefix-map ',(intern (concat "dang/" name "/map"))
@@ -75,23 +74,23 @@ The forms of the generated symbols is:
 
   ;; Cannot be looped as the NAME string needs to be the macro argument to be
   ;; able to generate the symbols
-  (dang/generate-override-keymap "w" "windows")
-  (dang/generate-override-keymap "s" "search")
-  (dang/generate-override-keymap "b" "buffers")
-  (dang/generate-override-keymap "h" "help")
-  (dang/generate-override-keymap "f" "files")
-  (dang/generate-override-keymap "t" "text")
-  (dang/generate-override-keymap "c" "completions")
+  (dang/generate-override-keymap dang/leader/def "w" "windows")
+  (dang/generate-override-keymap dang/leader/def "s" "search")
+  (dang/generate-override-keymap dang/leader/def "b" "buffers")
+  (dang/generate-override-keymap dang/leader/def "h" "help")
+  (dang/generate-override-keymap dang/leader/def "f" "files")
+  (dang/generate-override-keymap dang/leader/def "t" "text")
+  (dang/generate-override-keymap dang/leader/def "c" "completions")
 
   (dang/windows/def
-    "b" 'balance-windows
-    "m" 'maximize-window
-    "d" '(delete-window :wk "delete-window") ;; Needed for some reason
     "1" '(delete-other-windows :wk "delete-other-window")
+    "b" 'balance-windows
+    "d" '(delete-window :wk "delete-window") ;; Needed for some reason
     "h" '(evil-window-left :wk "window-right")
     "j" '(evil-window-down :wk "window-down")
     "k" '(evil-window-up :wk "window-up")
-    "l" '(evil-window-right :wk "window-right"))
+    "l" '(evil-window-right :wk "window-right")
+    "m" 'maximize-window)
 
   (dang/buffers/def
     "k" 'kill-buffer
@@ -101,17 +100,17 @@ The forms of the generated symbols is:
           :wk "kill-current-buffer"))
 
   (dang/help/def
-    "v" 'describe-variable
     "f" 'describe-function
-    "k" 'describe-key
     "g" 'general-describe-keybindings
-    "w" 'where-is
+    "k" 'describe-key
     "m" 'describe-mode
-    "p" 'describe-package)
+    "p" 'describe-package
+    "v" 'describe-variable
+    "w" 'where-is)
 
   (dang/files/def
-    "o" '(find-file :wk "open-file")
     "d" 'delete-file
+    "o" '(find-file :wk "open-file")
     "s" '(save-buffer :wk "save-file"))
 
   (dang/text/def
@@ -156,9 +155,9 @@ The forms of the generated symbols is:
     (aw-flip-window))
   :general
   (dang/windows/def
-    "s" '(ace-window :wk "select-window")
     "D" '(ace-delete-window :wk "select-and-delete-window")
-    "f" '(swap-windows-and-keep-focus :wk "flip-windows")))
+    "f" '(swap-windows-and-keep-focus :wk "flip-windows")
+    "s" '(ace-window :wk "select-window")))
 
 ;; Narrowing completions across the editor using ivy
 (use-package ivy
@@ -195,10 +194,15 @@ The forms of the generated symbols is:
   (setq evil-want-integration t)   ;; Make sure we can use evil pervasively
   (setq evil-want-keybinding nil)  ;; Disable default evilified keybindings so we can rely on evil-collection
   :config
+  (setq evil-normal-state-modes
+        (append evil-emacs-state-modes
+                evil-normal-state-modes
+                evil-motion-state-modes))
+  (setq evil-emacs-state-modes nil)
+  (setq evil-motion-state-modes nil)
   (evil-mode 1))
 
 (use-package evil-collection
-  :demand t
   :after evil
   :custom
   (evil-collection-setup-minibuffer t)
