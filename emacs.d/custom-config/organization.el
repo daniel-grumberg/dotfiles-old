@@ -36,6 +36,9 @@ Inserted by installing org-mode or when a release is made."
 ;; Proper installation of org-mode
 (use-package org
   :init
+  ;; Ensure org-mode is the default for /\.(org(_archive)?|txt)/ files
+  (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
+
   (setq org-hide-leading-stars t)
   (setq org-directory "~/org"
         org-agenda-files '("~/org/inbox.org"
@@ -84,9 +87,7 @@ Inserted by installing org-mode or when a release is made."
   (setq org-refile-targets '((org-agenda-files :maxlevel . 9)
                              ("~/org/tickler.org" :maxlevel . 9)))
 
-  (setq org-archive-location "~/org/archive/%s_archive")
-  ;; Ensure org-mode is the default for /\.(org(_archive)?|txt)/ files
-  (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
+  (setq org-archive-location "~/org/archive/%s_archive::")
 
   (defhydra dang/hydra-org-inbox-refile
     (:pre (setq which-key-inhibit t)
@@ -196,7 +197,7 @@ _gd_ goto-date
     "/" '(org-sparse-tree :wk "sparse-tree")
     "." '(org-time-stamp :wk "time-stamp")
     "!" '(org-time-stamp-inactive :wk "time-stamp-inactive")
-    ":" '(org-set-tags :wk "set-tags")
+    ":" '(org-set-tags-command :wk "set-tags")
     "a" '(org-archive-subtree :wk "archive-subtree")
     "b" '(org-tree-to-indirect-buffer :wk "tree-to-indirect-buffer")
     "c" '(org-capture :wk "capture")
@@ -227,7 +228,8 @@ _gd_ goto-date
     "r" '(org-capture-refile :wk "finalize-and-refile")
     "a" '(org-capture-kill :wk "abort"))
   (dang/local/def 'org-agenda-mode-map
-    "A" '(dang/hydra-org-agenda/body :wk "agenda menu")))
+    "A" '(dang/hydra-org-agenda/body :wk "agenda menu"))
+  :hook ((org-agenda-mode . dang/hydra-org-agenda/body)))
 
 (use-package org-bullets
   :hook ((org-mode . org-bullets-mode)))

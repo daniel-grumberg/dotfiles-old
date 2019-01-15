@@ -122,16 +122,15 @@ The forms of the generated symbols is:
   :init
   (setq ibuffer-saved-filter-groups
         '(("default"
-	   ("emacs-config" (filename . ".emacs.d")
-	    ("Org" (or (mode . org-mode)
-		       (filename . "OrgMode")))
-	    (mode . css-mode)))
-	  ("Magit" (name . "\*magit\*"))
-	  ("ERC" (mode . erc-mode))
-	  ("Help" (or (name . "\*Help\*")
-		      (name . "\*Apropos\*")
-		      (name . "\*Messages\*")
-		      (name . "\*info\*")))))
+	   ("emacs-config" (filename . ".emacs.d"))
+	   ("Org" (or (mode . org-mode)
+		      (filename . "OrgMode")))
+	   ("Magit" (name . "\*magit\*"))
+	   ("ERC" (mode . erc-mode))
+	   ("Help" (or (name . "\*Help\*")
+		       (name . "\*Apropos\*")
+		       (name . "\*Messages\*")
+		       (name . "\*info\*"))))))
   (setq ibuffer-expert t)
   (setq ibuffer-show-empty-filter-groups nil)
   :general

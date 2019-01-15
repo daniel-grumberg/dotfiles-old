@@ -12,3 +12,4 @@ setup.lock
 **/config/gtk*
 emacs.d/straight/
 emacs.d/recentf
+emacs.d/bookmarks
