@@ -165,7 +165,7 @@ _gd_ goto-date
     ("fc" org-agenda-filter-by-category)
     ("fx" org-agenda-filter-by-regexp)
     ("ft" org-agenda-filter-by-tag)
-    ("fr" org-agenda-filter-by-tag-refine)
+    ("fr" org-agenda-filter-by-tag)
     ("fh" org-agenda-filter-by-top-headline)
     ("fd" org-agenda-filter-remove-all)
     ;; Other
