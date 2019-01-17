@@ -36,7 +36,7 @@
   :demand t
   :config
   (general-create-definer dang/leader/def
-    :states '(normal visual insert)
+    :states '(motion normal visual insert emacs)
     :keymaps 'override
     :prefix "SPC"
     :non-normal-prefix "M-SPC")
@@ -48,7 +48,7 @@
             :wk "previous-buffer"))
 
   (general-create-definer dang/local/def
-    :states '(normal visual insert)
+    :states '(normal visual insert emacs)
     :prefix "SPC l"
     :non-normal-prefix "M-SPC l")
 
@@ -190,15 +190,13 @@ The forms of the generated symbols is:
 (use-package evil
   :demand t
   :init
+  (setq evil-respect-visual-line-mode t)
   (setq evil-want-integration t)   ;; Make sure we can use evil pervasively
   (setq evil-want-keybinding nil)  ;; Disable default evilified keybindings so we can rely on evil-collection
   :config
-  (setq evil-normal-state-modes
-        (append evil-emacs-state-modes
-                evil-normal-state-modes
-                evil-motion-state-modes))
-  (setq evil-emacs-state-modes nil)
-  (setq evil-motion-state-modes nil)
+  ;; Ensure no major mode defaults to emacs or motion state unless explicitly specified
+  (setq evil-emacs-state-modes nil
+        evil-motion-state-modes nil)
   (evil-mode 1))
 
 (use-package evil-collection
