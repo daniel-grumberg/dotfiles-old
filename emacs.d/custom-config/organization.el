@@ -212,7 +212,7 @@ _gd_ goto-date
     "p" '(org-set-property :wk "set-property")
     "q" '(org-clock-cancel :wk "clock-cancel")
     "r" '(org-refile :wk "refile")
-    "R" '(dang/hydra-org-inbox-refile/body :wk "inbox-refile-menu")
+    "R" '(dang/hydra-org-inbox-refile/body :wk "inbox-refile-popup")
     "s" '(org-schedule :wk "schedule")
     "t" '(org-todo :wk "set-todo")
     "H" '(org-shiftleft :wk "shiftleft")
@@ -228,7 +228,7 @@ _gd_ goto-date
     "r" '(org-capture-refile :wk "finalize-and-refile")
     "a" '(org-capture-kill :wk "abort"))
   (dang/local/def 'org-agenda-mode-map
-    "A" '(dang/hydra-org-agenda/body :wk "agenda menu"))
+    "A" '(dang/hydra-org-agenda/body :wk "agenda-popup"))
   :hook ((org-agenda-mode . dang/hydra-org-agenda/body)))
 
 (use-package org-bullets

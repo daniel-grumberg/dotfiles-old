@@ -51,7 +51,7 @@
   :custom (flyspell-correct-interface 'flyspell-correct-ivy)
   :general
   (dang/text/def
-    "s" '(dang/hydra-spelling/body :wk "spellcheck-menu"))
+    "s" '(dang/hydra-spelling/body :wk "spellcheck-popup"))
   :config
   (defhydra dang/hydra-spelling nil
   "
