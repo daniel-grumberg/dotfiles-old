@@ -70,6 +70,7 @@ Inserted by installing org-mode or when a release is made."
   (setq org-use-fast-tag-selection t
         org-tag-persistent-alist '(("@home" . "h")
                                    ("@office" . "o")
+                                   ("@computer" . "c")
                                    ("@email" . "e")))
 
   (setq org-capture-templates
