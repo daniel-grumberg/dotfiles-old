@@ -38,8 +38,8 @@ Inserted by installing org-mode or when a release is made."
   :init
   ;; Ensure org-mode is the default for /\.(org(_archive)?|txt)/ files
   (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
-
-  (setq org-hide-leading-stars t)
+  (setq org-adapt-indentation nil
+        org-hide-leading-stars t)
   (setq org-directory "~/org"
         org-agenda-files '("~/org/inbox.org"
                            "~/org/tickler.org"
