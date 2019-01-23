@@ -67,11 +67,11 @@ Inserted by installing org-mode or when a release is made."
 
   (setq org-use-fast-todo-selection t)
 
-  (setq org-use-fast-tag-selection t
-        org-tag-persistent-alist '(("@home" . "h")
-                                   ("@office" . "o")
-                                   ("@computer" . "c")
-                                   ("@email" . "e")))
+  (setq org-tag-persistent-alist '(("@home" . ?h)
+                                   ("@office" . ?o)
+                                   ("@computer" . ?c)
+                                   ("@email" . ?e)))
+  (setq org-use-fast-tag-selection t)
 
   (setq org-capture-templates
         '(("t" "todo" entry (file "~/org/inbox.org")
