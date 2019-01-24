@@ -10,7 +10,8 @@
 (defvar dang/requested-features
   '((dang/org-mode . "organization")
     (dang/spellchecking . "spellchecking")
-    (dang/git-integration . "git-integration"))
+    (dang/git-integration . "git-integration")
+    (dang/project-management . "project-management"))
   "Association list of features and filenames where to find them within the custom-config directory")
 
 ;; Load additional requested features
