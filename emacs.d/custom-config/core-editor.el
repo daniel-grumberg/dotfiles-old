@@ -90,7 +90,9 @@ The forms of the generated symbols is:
     "j" '(evil-window-down :wk "window-down")
     "k" '(evil-window-up :wk "window-up")
     "l" '(evil-window-right :wk "window-right")
-    "m" 'maximize-window)
+    "m" 'maximize-window
+    "s" 'split-window-below
+    "v" 'split-window-right)
 
   (dang/buffers/def
     "k" 'kill-buffer
@@ -156,7 +158,7 @@ The forms of the generated symbols is:
   (dang/windows/def
     "D" '(ace-delete-window :wk "select-and-delete-window")
     "f" '(swap-windows-and-keep-focus :wk "flip-windows")
-    "s" '(ace-window :wk "select-window")))
+    "S" '(ace-window :wk "select-window")))
 
 ;; Narrowing completions across the editor using ivy
 (use-package ivy
