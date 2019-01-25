@@ -11,7 +11,8 @@
   '((dang/org-mode . "organization")
     (dang/spellchecking . "spellchecking")
     (dang/git-integration . "git-integration")
-    (dang/project-management . "project-management"))
+    (dang/project-management . "project-management")
+    (dang/lsp-features . "lsp-features"))
   "Association list of features and filenames where to find them within the custom-config directory")
 
 ;; Load additional requested features
