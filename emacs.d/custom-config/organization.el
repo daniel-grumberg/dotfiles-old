@@ -40,11 +40,11 @@ Inserted by installing org-mode or when a release is made."
   (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
   (setq org-adapt-indentation nil
         org-hide-leading-stars t)
-  (setq org-directory "~/org"
-        org-agenda-files '("~/org/inbox.org"
-                           "~/org/tickler.org"
-                           "~/org/agenda")
-        org-default-notes-file "~/org/inbox.org")
+  (setq org-directory "~/org-gtd"
+        org-agenda-files '("~/org-gtd/inbox.org"
+                           "~/org-gtd/tickler.org"
+                           "~/org-gtd/agenda")
+        org-default-notes-file "~/org-gtd/inbox.org")
 
   (setq org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
@@ -74,21 +74,21 @@ Inserted by installing org-mode or when a release is made."
   (setq org-use-fast-tag-selection t)
 
   (setq org-capture-templates
-        '(("t" "todo" entry (file "~/org/inbox.org")
+        '(("t" "todo" entry (file "~/org-gtd/inbox.org")
            "* TODO %?\n")
-          ("n" "note" entry (file "~/org/inbox.org")
+          ("n" "note" entry (file "~/org-gtd/inbox.org")
            "* %? :NOTE:\n\n")
-          ("j" "Journal" entry (file+datetree "~/org/diary.org")
+          ("j" "Journal" entry (file+datetree "~/org-gtd/diary.org")
            "* %?\n%U\n")
-          ("w" "org-protocol" entry (file "~/org/inbox.org")
+          ("w" "org-protocol" entry (file "~/org-gtd/inbox.org")
            "* TODO Review [[%:link][%:description]]\n")
-          ("T" "Tickler" entry (file "~/org/tickler.org")
+          ("T" "Tickler" entry (file "~/org-gtd/tickler.org")
            "* %?\n%U\n")))
 
   (setq org-refile-targets '((org-agenda-files :maxlevel . 9)
-                             ("~/org/tickler.org" :maxlevel . 9)))
+                             ("~/org-gtd/tickler.org" :maxlevel . 9)))
 
-  (setq org-archive-location "~/org/archive/%s_archive::")
+  (setq org-archive-location "~/org-gtd/archive/%s_archive::")
 
   (defhydra dang/hydra-org-inbox-refile
     (:pre (setq which-key-inhibit t)
