@@ -3,6 +3,17 @@
 (use-package lsp-mode
   :commands lsp
   :config
+  :general
+  (dang/help/def lsp-mode-map
+    "l" 'lsp-describe-session)
+  (dang/local/def lsp-mode-map
+    "d" 'lsp-find-definition
+    "f" 'lsp-format-buffer
+    "g" 'lsp-goto-implementation
+    "G" 'lsp-goto-type-definition
+    "p" 'lsp-describe-thing-at-point
+    "r" 'lsp-rename
+    "R" 'lsp-find-references)
   (setq lsp-inhibit-message t
         lsp-enable-snippet t
         lsp-auto-guees-root t
