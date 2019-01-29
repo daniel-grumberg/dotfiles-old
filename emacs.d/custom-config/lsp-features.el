@@ -2,7 +2,6 @@
 
 (use-package lsp-mode
   :commands lsp
-  :config
   :general
   (dang/help/def lsp-mode-map
     "l" 'lsp-describe-session)
@@ -17,14 +16,14 @@
   (setq lsp-inhibit-message t
         lsp-enable-snippet t
         lsp-auto-guees-root t
-        lsp-restart 'auto-restart
         lsp-auto-configure t
-        lsp-prefer-flymake nil
         lsp-enable-indentation t))
 
 (use-package lsp-ui
   :commands lsp-ui-mode
-  :hook ((lsp-mode . lsp-ui-mode)))
+  :hook (lsp-mode . lsp-ui-mode)
+  :config
+  (setq lsp-prefer-flymake nil))
 
 (use-package company-lsp
   :commands company-lsp

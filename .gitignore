@@ -13,3 +13,4 @@ setup.lock
 emacs.d/straight/
 emacs.d/recentf
 emacs.d/bookmarks
+emacs.d/.lsp-session*
