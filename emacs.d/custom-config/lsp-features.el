@@ -7,6 +7,7 @@
     "l" 'lsp-describe-session)
   (dang/local/def lsp-mode-map
     "d" 'lsp-find-definition
+    "D" 'lsp-find-declaration
     "f" 'lsp-format-buffer
     "g" 'lsp-goto-implementation
     "G" 'lsp-goto-type-definition
