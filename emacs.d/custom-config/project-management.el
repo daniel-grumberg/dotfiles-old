@@ -13,7 +13,7 @@
    "g" '(projectile-vc :wk "version-control")
    "I" '(projectile-invalidate-cache :wk "invalidate-project-cache")
    "k" '(projectile-kill-buffers :wk "kill-project-buffers")
-   "p" '(project-switch-project :wk "switch-project")
+   "p" '(projectile-switch-project :wk "switch-project")
    "t" '(projectile-test-project :wk "test")
    "/" '(projectile-grep :wk "grep"))
   :config
