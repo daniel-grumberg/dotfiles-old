@@ -27,13 +27,7 @@
 
 ;; Add mappings for text display manipulation
 (dang/text/def
- "d" '((lambda ()
-         (interactive)
-         (text-scale-decrease 1))
-       :wk "decrease-text-scale")
- "i" '((lambda ()
-         (interactive)
-         (text-scale-increase 1))
-       :wk "increase-text-scale"))
+ "d" 'text-scale-decrease
+ "i" 'text-scale-increase)
 
 (provide 'dang/core-ui)

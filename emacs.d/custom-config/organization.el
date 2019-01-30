@@ -189,7 +189,7 @@ _gd_ goto-date
     "l" '(org-store-link :wk "store-link")
     "a" '(org-agenda :wk "agenda")
     "c" '(org-capture :wk "capture")
-    "i" '((lambda ()
+    "i" '(#'(lambda ()
             (interactive)
             (find-file org-default-notes-file))
           :wk "open-inbox"))

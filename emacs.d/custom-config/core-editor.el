@@ -69,8 +69,8 @@ The forms of the generated symbols is:
           :prefix-map ',(intern (concat "dang/" name "/map"))
           "" '(:ignore t :wk ,name))
         (general-create-definer ,(intern (concat "dang/" name "/def"))
-          :wk-full-keys nil
-          :keymaps ',(intern (concat "dang/" name "/map")))))
+          :keymaps ',(intern (concat "dang/" name "/map"))
+          :wk-full-keys nil)))
 
   ;; Cannot be looped as the NAME string needs to be the macro argument to be
   ;; able to generate the symbols
