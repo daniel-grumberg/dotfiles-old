@@ -31,4 +31,7 @@
   :config
   (push 'company-lsp company-backends))
 
+(use-package ivy-xref
+  :init (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
+
 (provide 'dang/lsp-features)
