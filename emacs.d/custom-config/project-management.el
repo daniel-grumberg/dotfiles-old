@@ -19,7 +19,8 @@
    "t" '(projectile-test-project :wk "test")
    "/" '(projectile-grep :wk "grep"))
   :config
-  (setq projectile-completion-system 'ivy))
+  (setq projectile-completion-system 'ivy
+        projectile-enable-caching t))
 
 
 (provide 'dang/project-management)
