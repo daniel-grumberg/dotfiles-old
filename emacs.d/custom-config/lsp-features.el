@@ -3,8 +3,9 @@
 (use-package lsp-mode
   :commands lsp
   :general
-  (dang/help/def lsp-mode-map
-    "l" 'lsp-describe-session)
+  (dang/help/def
+    :predicate '(lsp-mode)
+    "l" '(lsp-describe-session :wk "lsp-describe-session"))
   (dang/local/def lsp-mode-map
     "d" 'lsp-find-definition
     "D" 'lsp-find-declaration
