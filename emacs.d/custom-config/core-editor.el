@@ -212,6 +212,9 @@ The forms of the generated symbols is:
 (use-package hydra
   :demand t)
 
+;; Enable smart parens matching globally
+(electric-pair-mode 1)
+
 ;; Enable completions globally
 (use-package company
   :demand t
