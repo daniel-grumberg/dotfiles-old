@@ -1,3 +1,5 @@
+;; Ensure we use the straight mirror of GNU ELPA
+(setq straight-recipes-gnu-elpa-use-mirror t)
 ;; Bootstrap straight.el package management
 ;; Snippet from https://github.com/raxod502/straight.el#getting-started
 (defvar bootstrap-version)
