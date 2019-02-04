@@ -20,7 +20,8 @@
    "/" '(projectile-grep :wk "grep"))
   :config
   (setq projectile-completion-system 'ivy
-        projectile-enable-caching t))
+        projectile-enable-caching t)
+  (projectile-mode 1))
 
 
 (provide 'dang/project-management)

@@ -12,7 +12,8 @@
     "f" 'lsp-format-buffer
     "g" 'lsp-goto-implementation
     "G" 'lsp-goto-type-definition
-    "p" 'lsp-describe-thing-at-point
+    "h" 'lsp-describe-thing-at-point
+    "p" '(xref-pop-marker-stack :wk "goto-previous")
     "r" 'lsp-rename
     "R" 'lsp-find-references)
   (setq lsp-inhibit-message t

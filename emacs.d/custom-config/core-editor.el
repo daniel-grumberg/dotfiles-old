@@ -1,5 +1,3 @@
-(provide 'dang/core-editor)
-
 ;; If Emacs is started via GUI toolkit it won't source the startup scripts which might cause issues (especially on macOS)
 (use-package exec-path-from-shell
   :demand t
@@ -226,3 +224,5 @@ The forms of the generated symbols is:
     "c" 'company-complete
     "o" 'company-other-backend)
   :hook ((after-init . global-company-mode)))
+
+(provide 'dang/core-editor)
