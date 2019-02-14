@@ -2,6 +2,11 @@
 #################
 .dir-locals.el
 
+# LSP Stuff #
+#############
+.ccls-cache/
+compile_commands.json
+
 # Compiled source #
 ###################
 *.com
