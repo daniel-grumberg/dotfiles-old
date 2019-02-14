@@ -26,4 +26,6 @@
   :hook ((c-mode c++-mode objc-mode) .
          (lambda () (require 'ccls) (lsp))))
 
+(use-package cmake-mode)
+
 (provide 'dang/c-c++-support)
