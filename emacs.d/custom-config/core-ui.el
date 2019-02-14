@@ -25,6 +25,12 @@
   :config
   (load-theme 'gruvbox-light-medium t))
 
+(use-package dashboard
+  :config
+  (dashboard-setup-startup-hook)
+  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))
+        dashboard-startup-banner 'logo))
+
 ;; Add mappings for text display manipulation
 (dang/text/def
  "d" 'text-scale-decrease
