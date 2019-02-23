@@ -20,4 +20,15 @@
         TeX-PDF-mode t)
   (setq-default TeX-master nil))
 
+(use-package ivy-bibtex
+  :general
+  (dang/local/def LaTeX-mode-map
+    "r" '(ivy-bibtex :wk "search-bibliography"))
+  :config
+  (setq bibtex-completion-bibliography '("~/bibliography/main.bib")
+        bibtex-completion-library-path '("/path1/to/pdfs" "/path2/to/pdfs")
+        bibtex-completion-pdf-field "File"
+        bibtex-completion-notes-path "~/bibliography/notes/"
+        ivy-bibtex-default-action 'ivy-bibtex-insert-key))
+
 (provide 'dang/latex-support)
