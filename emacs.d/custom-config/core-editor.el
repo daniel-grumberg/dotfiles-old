@@ -1,3 +1,5 @@
+;; Ensure this is a server so we can use emacsclient, notbaly for synctex
+(when (eq system-type 'darwin) (server-start))
 ;; If Emacs is started via GUI toolkit it won't source the startup scripts which might cause issues (especially on macOS)
 (use-package exec-path-from-shell
   :demand t
@@ -15,6 +17,10 @@
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
 
 (global-visual-line-mode)
+(use-package visual-fill-column
+  :hook (text-mode . visual-fill-column-mode)
+  :init
+  (setq visual-fill-column-width 120))
 
 (setq show-paren-delay 0)
 (show-paren-mode 1)
