@@ -9,16 +9,24 @@
     "~" '(LaTeX-math-mode :wk "toggle-math-mode")
     "b" '(TeX-command-run-all :wk "build")
     "B" '(LaTeX-find-matching-begin :wk "find-begin")
+    "c" '(TeX-command-master :wk "select-command")
     "E" '(LaTeX-find-matching-begin :wk "find-end")
     "e" '(LaTeX-environment :wk "insert-environment")
     "i" '(LaTeX-insert-item :wk "insert-env-item")
     "m" '(TeX-insert-macro :wk "insert-macro")
+    "n" '(TeX-next-error :wk "next-error")
     "s" '(LaTeX-section :wk "insert-section"))
   :config
-  (setq TeX-auto-save t
-        TeX-parse-self t
-        TeX-PDF-mode t)
-  (setq-default TeX-master nil))
+  (setq TeX-parse-self t
+        TeX-auto-save t
+        TeX-PDF-mode t
+        TeX-source-correlate-start-server t)
+;; Use Skim on macOS for pdf support
+  (when (eq system-type 'darwin)
+    (setq TeX-view-program-selection '((output-pdf "Skim")))
+    (setq TeX-view-program-list
+          '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
+    (setq-default TeX-master nil)))
 
 (use-package ivy-bibtex
   :general
@@ -29,6 +37,6 @@
         bibtex-completion-library-path '("~/bibliography/files")
         bibtex-completion-pdf-field "File"
         bibtex-completion-notes-path "~/bibliography/notes/"
-        ivy-bibtex-default-action 'ivy-bibtex-insert-key))
+        ivy-bibtex-default-action 'ivy-bibtex-insert-citation))
 
 (provide 'dang/latex-support)
