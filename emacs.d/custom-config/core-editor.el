@@ -43,7 +43,7 @@
     :states '(motion normal visual insert emacs)
     :keymaps 'override
     :prefix "SPC"
-    :non-normal-prefix "C-SPC")
+    :non-normal-prefix "M-SPC")
 
   (dang/leader/def
     "TAB" '((lambda ()
