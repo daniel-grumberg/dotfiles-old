@@ -22,10 +22,13 @@
         TeX-PDF-mode t
         TeX-source-correlate-start-server t)
 ;; Use Skim on macOS for pdf support
-  (when (eq system-type 'darwin)
-    (setq TeX-view-program-selection '((output-pdf "Skim")))
-    (setq TeX-view-program-list
+  (if (eq system-type 'darwin)
+    (setq TeX-view-program-selection '((output-pdf "Skim"))
+          TeX-view-program-list
           '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
+    (setq TeX-view-program-selection '((output-pdf "MuPDF"))
+          TeX-view-program-list
+          '(("MuPDF" "/usr/bin/mudpf %s"))))
     (setq-default TeX-master nil)))
 
 (use-package ivy-bibtex
