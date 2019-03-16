@@ -219,6 +219,11 @@ The forms of the generated symbols is:
 ;; Enable smart parens matching globally
 (electric-pair-mode 1)
 
+;; Enable easy-commenting operator
+(use-package evil-commentary
+  :config
+  (evil-commentary-mode))
+
 ;; Enable completions globally
 (use-package company
   :demand t
