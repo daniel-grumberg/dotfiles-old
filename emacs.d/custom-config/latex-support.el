@@ -29,7 +29,7 @@
     (setq TeX-view-program-selection '((output-pdf "MuPDF"))
           TeX-view-program-list
           '(("MuPDF" "/usr/bin/mudpf %s"))))
-    (setq-default TeX-master nil)))
+    (setq-default TeX-master nil))
 
 (use-package ivy-bibtex
   :general
