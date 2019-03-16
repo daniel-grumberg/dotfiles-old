@@ -26,10 +26,13 @@
   (load-theme 'gruvbox-light-medium t))
 
 (use-package dashboard
+  :init
+  (add-hook 'after-init-hook 'dashboard-refresh-buffer)
   :config
   (dashboard-setup-startup-hook)
   (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))
-        dashboard-startup-banner 'logo))
+        dashboard-items '((recents  . 5)
+                          (projects . 5))))
 
 ;; Add mappings for text display manipulation
 (dang/text/def
