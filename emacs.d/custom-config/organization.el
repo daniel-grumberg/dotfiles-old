@@ -35,6 +35,10 @@ Inserted by installing org-mode or when a release is made."
 (dang/generate-override-keymap dang/leader/def "o" "org-mode")
 ;; Proper installation of org-mode
 (use-package org
+  :preface
+  (defun dang/open-inbox ()
+      (interactive)
+    (find-file org-default-notes-file))
   :init
   ;; Ensure org-mode is the default for /\.(org(_archive)?|txt)/ files
   (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
@@ -189,10 +193,7 @@ _gd_ goto-date
     "l" '(org-store-link :wk "store-link")
     "a" '(org-agenda :wk "agenda")
     "c" '(org-capture :wk "capture")
-    "i" '(#'(lambda ()
-            (interactive)
-            (find-file org-default-notes-file))
-          :wk "open-inbox"))
+    "i" '(dang/open-inbox :wk "open-inbox"))
   (dang/local/def 'org-mode-map
     "'" '(org-edit-special :wk "edit-special")
     "/" '(org-sparse-tree :wk "sparse-tree")
