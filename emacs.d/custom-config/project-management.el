@@ -11,7 +11,7 @@
    "d" '(projectile-find-dir :wk "goto-directory")
    "D" '(projectile-dired :wk "project-dired")
    "e" '(projectile-edit-dir-locals :wk "project-dir-locals")
-   "f" '(projectile-find-file :wk "find-file")
+   "f" '(projectile-find-file :wk "project-find-file")
    "g" '(projectile-vc :wk "version-control")
    "I" '(projectile-invalidate-cache :wk "invalidate-project-cache")
    "k" '(projectile-kill-buffers :wk "kill-project-buffers")
