@@ -26,7 +26,8 @@
     (dang/spellchecking . "spellchecking")
     (dang/git-integration . "git-integration")
     (dang/project-management . "project-management")
-    (dang/lsp-features . "lsp-features"))
+    (dang/lsp-features . "lsp-features")
+    (dang/terminal-support . "terminal-support"))
   "Association list of core features and filenames where to find them within the custom-config directory")
 
 (defvar dang/language-support-features
