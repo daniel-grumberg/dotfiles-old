@@ -90,6 +90,7 @@ The forms of the generated symbols is:
     "1" '(delete-other-windows :wk "delete-other-window")
     "b" 'balance-windows
     "d" '(delete-window :wk "delete-window") ;; Needed for some reason
+    "D" '(kill-buffer-and-window :wk "delete-buffer-and-window") ;; Needed for some reason
     "h" '(evil-window-left :wk "window-right")
     "j" '(evil-window-down :wk "window-down")
     "k" '(evil-window-up :wk "window-up")
@@ -151,16 +152,12 @@ The forms of the generated symbols is:
 ;; Select and act on windows in tree-style
 (use-package ace-window
   :init
-  (defun ace-delete-window ()
-    (interactive)
-    (aw-delete-window))
   (defun swap-windows-and-keep-focus ()
     (interactive)
     (ace-swap-window)
     (aw-flip-window))
   :general
   (dang/windows/def
-    "D" '(ace-delete-window :wk "select-and-delete-window")
     "f" '(swap-windows-and-keep-focus :wk "flip-windows")
     "S" '(ace-window :wk "select-window")))
 
