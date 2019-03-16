@@ -23,5 +23,4 @@
         projectile-enable-caching t)
   (projectile-mode 1))
 
-
 (provide 'dang/project-management)
