@@ -29,7 +29,10 @@
     (setq TeX-view-program-selection '((output-pdf "MuPDF"))
           TeX-view-program-list
           '(("MuPDF" "/usr/bin/mudpf %s"))))
-    (setq-default TeX-master nil))
+  (setcdr (assoc "BibTeX" TeX-command-list)
+          '("bibtex --min-crossrefs=100 %s"
+            TeX-run-BibTeX nil t :help "Run BibTeX with ..."))
+  (setq-default TeX-master nil))
 
 (use-package ivy-bibtex
   :general
