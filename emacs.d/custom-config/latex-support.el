@@ -39,6 +39,13 @@
   (dang/local/def LaTeX-mode-map
     "r" '(ivy-bibtex :wk "search-bibliography"))
   :config
+  (if (eq system-type 'darwin)
+    (setq bibtex-completion-pdf-open-function
+          (lambda (fpath)
+            (call-process "open" nil 0 nil "-a" "/Applications/Skim.app" fpath)))
+    (setq bibtex-completion-pdf-open-function
+          (lambda (fpath)
+            (call-process "mupdf" fpath))))
   (setq bibtex-completion-bibliography '("~/bibliography/main.bib")
         bibtex-completion-library-path '("~/bibliography/files")
         bibtex-completion-pdf-field "File"
