@@ -1,3 +1,6 @@
+HOST *
+ServerAliveInterval 240
+
 HOST emmentaler1
 HostName emmentaler1.ethz.ch
 User grumberg
@@ -17,6 +20,20 @@ HOST labs
 HostName shell1.doc.ic.ac.uk
 User dg1814
 
-HOST home
-HostName voxel21
+HOST phobos
+HostName phobos.doc.ic.ac.uk
+User dg1814
 
+HOST deimos
+HostName deimos.doc.ic.ac.uk
+User dg1814
+
+HOST mars
+HostName mars.doc.ic.ac.uk
+User dg1814
+
+HOST kronos
+ProxyJump labs
+HostName 155.198.10.104
+User dang
+Port 39901
