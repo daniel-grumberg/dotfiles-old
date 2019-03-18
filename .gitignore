@@ -16,3 +16,4 @@ emacs.d/bookmarks
 emacs.d/.lsp-session*
 emacs.d/projectile-bookmarks.eld
 emacs.d/projectile.cache
+emacs.d/transient
