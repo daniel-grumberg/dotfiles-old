@@ -23,7 +23,7 @@
 ;; Editor theme (found at https://github.com/greduan/emacs-theme-gruvbox)
 (use-package gruvbox-theme
   :config
-  (load-theme 'gruvbox-light-medium t))
+  (load-theme 'gruvbox-light-soft t))
 
 (use-package dashboard
   :init
