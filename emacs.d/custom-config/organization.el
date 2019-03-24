@@ -200,6 +200,7 @@ _gd_ goto-date
     "." '(org-time-stamp :wk "time-stamp")
     "!" '(org-time-stamp-inactive :wk "time-stamp-inactive")
     ":" '(org-set-tags-command :wk "set-tags")
+    "#" '(org-update-statistics-cookies :wk "update-cookies")
     "a" '(org-archive-subtree :wk "archive-subtree")
     "b" '(org-tree-to-indirect-buffer :wk "tree-to-indirect-buffer")
     "c" '(org-capture :wk "capture")
