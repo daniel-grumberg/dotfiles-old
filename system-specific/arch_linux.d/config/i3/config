@@ -16,7 +16,8 @@ set $mod Mod4
 font pango:Source Code Pro 9
 
 # $i3-background
-exec_always --no-startup-id xsetroot -solid '#3c3836'
+exec --no-startup-id feh --randomize --bg-fill "$(xdg-user-dir PICTURES)/Wallpaper/"
+
 
 # gruvbox theme for i3 by okraits, http://okraits.de
 # colors ported from wmii theme by https://github.com/sunaku
