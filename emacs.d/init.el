@@ -19,8 +19,6 @@
               (require feature-symbol feature-file)))
           ,features))
 
- ;;This list is ordered, so we need to ensure org-mode stays at the top.
- ;;Refer to the organization file to reed more about this.
 (defvar dang/core-features
   '((dang/org-mode . "organization")
     (dang/spellchecking . "spellchecking")
