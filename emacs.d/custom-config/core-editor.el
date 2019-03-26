@@ -17,6 +17,7 @@
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
 
 (global-visual-line-mode)
+
 (use-package visual-fill-column
   :hook (text-mode . visual-fill-column-mode)
   :init
