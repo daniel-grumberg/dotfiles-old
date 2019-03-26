@@ -28,6 +28,7 @@
 ;;   :hook ((c-mode c++-mode objc-mode) .
 ;;          (lambda () (require 'ccls) (lsp))))
 
-(use-package cmake-mode)
+(use-package cmake-font-lock
+  :hook ((cmake-mode . cmake-font-lock-activate)))
 
 (provide 'dang/c-c++-support)
