@@ -1,6 +1,7 @@
 (use-package tex
   :straight auctex
   :mode ("\\.tex\\'" . TeX-latex-mode)
+  :hook ((LaTeX-mode . TeX-source-correlate-mode))
   :general
   (dang/local/def LaTeX-mode-map
     "*" '(LaTeX-mark-section :wk "mark-section")
@@ -20,15 +21,15 @@
   (setq TeX-parse-self t
         TeX-auto-save t
         TeX-PDF-mode t
+        TeX-source-correlate-start-server t
+        TeX-source-correlate-method 'synctex
         TeX-source-correlate-start-server t)
 ;; Use Skim on macOS for pdf support
   (if (eq system-type 'darwin)
     (setq TeX-view-program-selection '((output-pdf "Skim"))
           TeX-view-program-list
           '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
-    (setq TeX-view-program-selection '((output-pdf "MuPDF"))
-          TeX-view-program-list
-          '(("MuPDF" "/usr/bin/mudpf %s"))))
+    (setq TeX-view-program-selection '((output-pdf "PDF Tools"))))
   (setcdr (assoc "BibTeX" TeX-command-list)
           '("bibtex --min-crossrefs=100 %s"
             TeX-run-BibTeX nil t :help "Run BibTeX with ..."))
