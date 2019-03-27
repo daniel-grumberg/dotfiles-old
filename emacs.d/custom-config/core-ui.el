@@ -40,4 +40,7 @@
  "d" 'text-scale-decrease
  "i" 'text-scale-increase)
 
+(setq split-height-threshold 9999
+      split-width-threshold 120)
+
 (provide 'dang/core-ui)
