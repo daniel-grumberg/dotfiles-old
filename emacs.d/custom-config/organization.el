@@ -5,90 +5,6 @@
   (interactive)
   (find-file org-default-notes-file))
 
-(defhydra dang/hydra-org-inbox-refile
-  (:pre (setq which-key-inhibit t)
-        :post (setq which-key-inhibit nil))
-  ("j" org-next-item "next-item")
-  ("k" org-previous-item "previous-item")
-  ("r" org-refile "refile"))
-
-(defhydra dang/hydra-org-agenda (:pre (setq which-key-inhibit t)
-                                      :post (setq which-key-inhibit nil)
-                                      :hint none)
-  "
-^Navigation^       ^Visit entry^                 ^Date^             ^Custom Commands^
-^----------^------ ^-----------^---------------- ^----^-----------  ^---------------^
-_j_ next           _SPC_ other-window            _ds_ schedule      ^^
-_k_ previous       _TAB_ & goto-location         _dd_ set deadline  ^^
-_J_ next-item      _RET_ & delete-other-windows  _dt_ timestamp     ^^
-_K_ previous-item  ^^                            ^^                 ^^
-^^                 ^^                            ^^                 ^^
-^View^          ^Filter^              ^Headline^         ^Toggle mode^
-^----^--------  ^------^------------  ^--------^-------  ^-----------^----
-_vd_ day        _ft_ tag              _ht_ set-status    _tf_ follow
-_vw_ week       _fr_ refine-by-tag    _hk_ kill          _tl_ log
-_vt_ fortnight  _fc_ category         _hr_ refile        _ta_ archive-trees
-_vm_ month      _fh_ top headline     _ha_ archive       _tr_ clock-report
-_vy_ year       _fx_ regexp           _h:_ set-tags      _td_ diaries
-_vn_ next span  _fd_ delete--filters  _hp_ set-priority  ^^
-_vp_ prev span  ^^                    ^^                 ^^
-_vr_ reset      ^^                    ^^                 ^^
-^^              ^^                    ^^                 ^^
-^Other^
-^-----^-------
-_gr_ reload
-_._ goto-today
-_gd_ goto-date
-^^
-"
-  ;; Navigation
-  ("j" org-agenda-next-line)
-  ("k" org-agenda-previous-line)
-  ("J" org-agenda-next-item)
-  ("K" org-agenda-previous-item)
-  ;; Entry
-  ("ha" org-agenda-archive-default)
-  ("hk" org-agenda-kill)
-  ("hp" org-agenda-priority)
-  ("hr" org-agenda-refile)
-  ("h:" org-agenda-set-tags)
-  ("ht" org-agenda-todo)
-  ;; Visit entry
-  ("<tab>" org-agenda-goto :exit t)
-  ("TAB" org-agenda-goto :exit t)
-  ("SPC" org-agenda-show-and-scroll-up)
-  ("RET" org-agenda-switch-to :exit t)
-  ;; Date
-  ("dt" org-agenda-date-prompt)
-  ("dd" org-agenda-deadline)
-  ("ds" org-agenda-schedule)
-  ;; View
-  ("vd" org-agenda-day-view)
-  ("vw" org-agenda-week-view)
-  ("vt" org-agenda-fortnight-view)
-  ("vm" org-agenda-month-view)
-  ("vy" org-agenda-year-view)
-  ("vn" org-agenda-later)
-  ("vp" org-agenda-earlier)
-  ("vr" org-agenda-reset-view)
-  ;; Toggle mode
-  ("ta" org-agenda-archives-mode)
-  ("tr" org-agenda-clockreport-mode)
-  ("tf" org-agenda-follow-mode)
-  ("tl" org-agenda-log-mode)
-  ("td" org-agenda-toggle-diary)
-  ;; Filter
-  ("fc" org-agenda-filter-by-category)
-  ("fx" org-agenda-filter-by-regexp)
-  ("ft" org-agenda-filter-by-tag)
-  ("fr" org-agenda-filter-by-tag)
-  ("fh" org-agenda-filter-by-top-headline)
-  ("fd" org-agenda-filter-remove-all)
-  ;; Other
-  ("gd" org-agenda-goto-date)
-  ("." org-agenda-goto-today)
-  ("gr" org-agenda-redo))
-
 ;; Ensure org-mode is the default for /\.(org(_archive)?|txt)/ files
 (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
 (setq org-adapt-indentation nil
@@ -144,10 +60,13 @@ _gd_ goto-date
 ;; This cannot go in the :init section because use-package tries to generate the autoloads before the keymap exists?
 (dang/generate-override-keymap dang/leader/def "o" "org-mode")
 
-(general-def '(motion emacs)
+(general-define-key
+  :states '(motion emacs)
   "<f12>" 'org-agenda)
 
-(general-def '(motion emacs) org-mode-map
+(general-define-key
+  :states '(motion emacs)
+  :keymaps 'org-mode-map
   "M-h" 'org-metaleft
   "M-k" 'org-metaup
   "M-j" 'org-metadown
@@ -156,6 +75,54 @@ _gd_ goto-date
   "M-K" 'org-shiftmetaup
   "M-J" 'org-shiftmetadown
   "M-L" 'org-shiftmetaright)
+
+(general-define-key
+  :states '(motion emacs)
+  :keymaps 'org-agenda-mode-map
+  "j" 'org-agenda-next-item
+  "k" 'org-agenda-previous-item
+  ;; Entry
+  "ha" 'org-agenda-archive-default
+  "hk" 'org-agenda-kill
+  "hp" 'org-agenda-priority
+  "hr" 'org-agenda-refile
+  "h:" 'org-agenda-set-tags
+  "ht" 'org-agenda-todo
+  ;; Visit entry
+  "<tab>" 'org-agenda-goto
+  "TAB" 'org-agenda-goto
+  "SPC" 'org-agenda-show-and-scroll-up
+  "RET" 'org-agenda-switch-to
+  ;; Date
+  "dt" 'org-agenda-date-prompt
+  "dd" 'org-agenda-deadline
+  "ds" 'org-agenda-schedule
+  ;; View
+  "vd" 'org-agenda-day-view
+  "vw" 'org-agenda-week-view
+  "vt" 'org-agenda-fortnight-view
+  "vm" 'org-agenda-month-view
+  "vy" 'org-agenda-year-view
+  "vn" 'org-agenda-later
+  "vp" 'org-agenda-earlier
+  "vr" 'org-agenda-reset-view
+  ;; Toggle mode
+  "ta" 'org-agenda-archives-mode
+  "tr" 'org-agenda-clockreport-mode
+  "tf" 'org-agenda-follow-mode
+  "tl" 'org-agenda-log-mode
+  "td" 'org-agenda-toggle-diary
+  ;; Filter
+  "fc" 'org-agenda-filter-by-category
+  "fx" 'org-agenda-filter-by-regexp
+  "ft" 'org-agenda-filter-by-tag
+  "fr" 'org-agenda-filter-by-tag
+  "fh" 'org-agenda-filter-by-top-headline
+  "fd" 'org-agenda-filter-remove-all
+  ;; Other
+  "gd" 'org-agenda-goto-date
+  "." 'org-agenda-goto-today
+  "gr" 'org-agenda-redo)
 
 (dang/org-mode/def
   "l" '(org-store-link :wk "store-link")
@@ -184,13 +151,8 @@ _gd_ goto-date
   "p" '(org-set-property :wk "set-property")
   "q" '(org-clock-cancel :wk "clock-cancel")
   "r" '(org-refile :wk "refile")
-  "R" '(dang/hydra-org-inbox-refile/body :wk "inbox-refile-popup")
   "s" '(org-schedule :wk "schedule")
   "t" '(org-todo :wk "set-todo")
-  "H" '(org-shiftleft :wk "shiftleft")
-  "J" '(org-shiftdown :wk "shiftdown")
-  "K" '(org-shiftup :wk "shiftup")
-  "L" '(org-shiftright :wk "shiftright")
   "h" '(nil :wk "heading-insertion")
   "h i" '(org-insert-heading :wk "insert-heading")
   "h t" '(org-insert-todo-heading :wk "insert-todo")
@@ -200,11 +162,6 @@ _gd_ goto-date
   "f" '(org-capture-finalize :wk "finalize")
   "r" '(org-capture-refile :wk "finalize-and-refile")
   "a" '(org-capture-kill :wk "abort"))
-
-(dang/local/def 'org-agenda-mode-map
-  "A" '(dang/hydra-org-agenda/body :wk "agenda-popup"))
-
-(add-hook 'org-agenda-mode-hook 'dang/hydra-org-agenda-body)
 
 (use-package org-bullets
   :hook ((org-mode . org-bullets-mode)))
