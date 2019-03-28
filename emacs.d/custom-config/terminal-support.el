@@ -31,6 +31,7 @@
 
 (defun dang/projectile-term ()
   (interactive)
+  (setq default-directory (projectile-project-root))
   (dang/pop-term (projectile-project-name)))
 
 (defun dang/default-term ()
