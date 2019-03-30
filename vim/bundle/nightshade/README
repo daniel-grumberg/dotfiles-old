@@ -1,8 +1,0 @@
-NightShade uses a black background with bright highlighting.
-NightShade_Print uses similar colors but is designed for printing.
-
-I put the macro below in my .vimrc file to allow a single key
-to change to the nightshade_print colorization, print, then change back.
-
-   map <F1> :colorscheme nightshade_print<CR> :hardcopy<CR> :colorscheme nightshade<CR>
-
