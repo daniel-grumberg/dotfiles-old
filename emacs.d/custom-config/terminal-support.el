@@ -11,7 +11,9 @@
       (if maybe-buffer
           (switch-to-buffer maybe-buffer)
         (ansi-term (getenv "SHELL"))
-        (rename-buffer term-name)))))
+        (rename-buffer term-name)
+        (set-process-query-on-exit-flag
+         (get-buffer-process (current-buffer)) nil)))))
 
 (defun dang/create-term-window ()
   (let ((size (- (round (* (window-height (frame-root-window)) (/ 30.0 100.0))))))
