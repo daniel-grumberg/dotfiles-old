@@ -1,3 +1,8 @@
+;; Ensure this is a server so we can use emacsclient, notbaly for synctex
+(when (eq system-type 'darwin)
+  (load "server")
+  (unless (server-running-p) (server-start)))
+
 ;; Easily locate handwriten configurations
 (add-to-list 'load-path (expand-file-name "custom-config" user-emacs-directory))
 
@@ -7,6 +12,13 @@
 
 ;; Load basic required configurations
 (require 'dang/package-management "package-management")
+
+;; If Emacs is started via GUI toolkit it won't source the startup scripts which might cause issues (especially on macOS)
+(use-package exec-path-from-shell
+  :demand t
+  :config
+  (exec-path-from-shell-initialize))
+
 (require 'dang/core-editor "core-editor")
 (require 'dang/core-ui "core-ui")
 

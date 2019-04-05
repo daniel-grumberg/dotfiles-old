@@ -1,11 +1,3 @@
-;; Ensure this is a server so we can use emacsclient, notbaly for synctex
-(when (eq system-type 'darwin) (server-start))
-;; If Emacs is started via GUI toolkit it won't source the startup scripts which might cause issues (especially on macOS)
-(use-package exec-path-from-shell
-  :demand t
-  :config
-  (exec-path-from-shell-initialize))
-
 ;; Preferred editor behaviors, this prevents backup files on auto-saves
 (setq auto-save-list-prefix nil
       make-backup-files nil
