@@ -19,14 +19,12 @@
 
 (add-hook 'c-mode-hook 'dang/set-llvm-style)
 (add-hook 'c++-mode-hook 'dang/set-llvm-style)
-(add-hook 'c-mode-hook 'lsp)
-(add-hook 'c++-mode-hook 'lsp)
 
-;; (use-package ccls
-;;   :init
-;;   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc)) ;; Flycheck should not report garbage
-;;   :hook ((c-mode c++-mode objc-mode) .
-;;          (lambda () (require 'ccls) (lsp))))
+(use-package ccls
+  :init
+  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc)) ;; Flycheck should not report garbage
+  :hook ((c-mode c++-mode objc-mode) .
+         (lambda () (require 'ccls) (lsp))))
 
 (use-package cmake-font-lock
   :hook ((cmake-mode . cmake-font-lock-activate)))

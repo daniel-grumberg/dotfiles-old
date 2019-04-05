@@ -17,7 +17,6 @@
     "r" 'lsp-rename
     "R" 'lsp-find-references)
   (setq lsp-inhibit-message t
-        lsp-enable-snippet t
         lsp-auto-guees-root t
         lsp-auto-configure t
         lsp-enable-indentation t))
