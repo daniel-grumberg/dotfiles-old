@@ -5,19 +5,18 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
-(menu-bar-mode -1)
 (blink-cursor-mode -1)
 
 ;; Set the default font
 (add-to-list 'default-frame-alist '(font . "Source Code Pro 12"))
 
 ;; Ensure we start up in full screen mode
+(add-to-list 'default-frame-alist '(fullscreen . fullscreen))
 
-;; macOS specific UI tweak
+;; macOS specific UI tweaks
 (when (eq system-type 'darwin)
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . light))
-  (add-to-list 'default-frame-alist '(fullscreen . fullscreen))
   (setq ns-use-proxy-icon  nil
 	frame-title-format nil))
 
@@ -40,7 +39,22 @@
  "d" 'text-scale-decrease
  "i" 'text-scale-increase)
 
-(setq split-height-threshold 9999
-      split-width-threshold 120)
+;; Parameters that ensure that side windows maintain their purpose and
+;; can not be accidentaly deleted
+(defvar dang/side-window-params
+  '(window-parameters . ((no-other-window . t)
+                         (no-delete-other-windows . t))))
+
+;; Windows should be able to be resized
+;; (setq fit-window-to-buffer-horizontally t)
+;;Ensure side windows maitain their respective sizes
+(setq window-resize-pixelwise t)
+(setq display-buffer-alist
+      `(("\\*\\(help\\|grep\\|compilation\\|xref|shell\\)\\*" display-buffer-in-side-window
+         (side . right) (slot . 0) (window-width . fit-window-to-buffer)
+         (preserve-size . (t . nil)) ,dang/side-window-params)))
+
+(dang/windows/def
+  "t" '(window-toggle-side-windows :wk "toggle-side-windows"))
 
 (provide 'dang/core-ui)
