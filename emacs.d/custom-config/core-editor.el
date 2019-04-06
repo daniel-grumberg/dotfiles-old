@@ -78,17 +78,17 @@ The forms of the generated symbols is:
   (dang/generate-override-keymap dang/leader/def "f" "files")
   (dang/generate-override-keymap dang/leader/def "t" "text")
   (dang/generate-override-keymap dang/leader/def "c" "completions")
-
   (dang/windows/def
     "1" '(delete-other-windows :wk "delete-other-window")
     "b" 'balance-windows
     "d" '(delete-window :wk "delete-window") ;; Needed for some reason
     "D" '(kill-buffer-and-window :wk "delete-buffer-and-window") ;; Needed for some reason
-    "h" '(evil-window-left :wk "window-right")
-    "j" '(evil-window-down :wk "window-down")
-    "k" '(evil-window-up :wk "window-up")
-    "l" '(evil-window-right :wk "window-right")
+    "h" '(windmove-left :wk "window-right")
+    "j" '(windmove-down :wk "window-down")
+    "k" '(windmove-up :wk "window-up")
+    "l" '(windmove-right :wk "window-right")
     "m" 'maximize-window
+    "o" 'other-window
     "s" 'split-window-below
     "v" 'split-window-right)
 
