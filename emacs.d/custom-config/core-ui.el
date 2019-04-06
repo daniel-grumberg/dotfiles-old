@@ -50,12 +50,19 @@
 ;;Ensure side windows maitain their respective sizes
 (setq window-resize-pixelwise t)
 (setq display-buffer-alist
-      `(("\\*\\(help\\|grep\\|xref\\|Man .*\\)\\*" display-buffer-in-side-window
-         (side . right) (slot . 0) (window-width . fit-window-to-buffer)
-         (preserve-size . (t . nil)) ,dang/side-window-params)
-        ("\\*compilation\\*" display-buffer-in-side-window
+      `(("\\*\\(help\\|grep\\compilation\\|Man .*\\)\\*" display-buffer-in-side-window
          (side . bottom) (slot . 0)
+         (preserve-size . (t . nil)) ,dang/side-window-params)
+        ("\\*xref\\*" display-buffer-in-side-window
+         (side . right) (slot . 0) (window-width . fit-window-to-buffer)
          (preserve-size . (t . nil)) ,dang/side-window-params)))
+
+(use-package neotree
+  :general
+  (dang/windows/def
+    "T" '(neotree-toggle :wk "toggle-tree"))
+  :config
+  (setq neo-theme'arrows))
 
 (dang/windows/def
   "t" '(window-toggle-side-windows :wk "toggle-side-windows"))
