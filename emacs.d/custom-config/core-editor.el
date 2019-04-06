@@ -100,6 +100,7 @@ The forms of the generated symbols is:
           :wk "kill-current-buffer"))
 
   (dang/help/def
+    "d" 'man
     "f" 'describe-function
     "g" 'general-describe-keybindings
     "k" 'describe-key
