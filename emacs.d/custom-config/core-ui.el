@@ -50,8 +50,11 @@
 ;;Ensure side windows maitain their respective sizes
 (setq window-resize-pixelwise t)
 (setq display-buffer-alist
-      `(("\\*\\(help\\|grep\\|compilation\\|xref|shell\\)\\*" display-buffer-in-side-window
+      `(("\\*\\(help\\|grep\\|xref\\|Man .*\\)\\*" display-buffer-in-side-window
          (side . right) (slot . 0) (window-width . fit-window-to-buffer)
+         (preserve-size . (t . nil)) ,dang/side-window-params)
+        ("\\*compilation\\*" display-buffer-in-side-window
+         (side . bottom) (slot . 0)
          (preserve-size . (t . nil)) ,dang/side-window-params)))
 
 (dang/windows/def
