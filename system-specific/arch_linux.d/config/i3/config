@@ -219,5 +219,6 @@ bar {
     }
 
     status_command  exec i3status -c $HOME/.config/i3status/config
+    tray_output primary
 }
 
