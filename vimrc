@@ -1,7 +1,3 @@
-"Pathogen stuff
-execute pathogen#infect()
-filetype plugin indent on
-
 " Needed on some Linuxen to disable stupid bell
 set visualbell
 set number
@@ -55,7 +51,6 @@ endfunction
 syntax on
 set bg=light
 set t_Co=256
-colorscheme gruvbox
 set cc=80
 set textwidth=80
 set formatoptions+=t
