@@ -192,6 +192,9 @@ mode "system" {
 
 bindsym $mod+Pause mode "system"
 
+bindsym --release Print exec "scrot '/home/dang/Pictures/Screenshots/%F_%H_%M_%S.png'"
+bindsym --release Shift+Print exec "scrot -s '/home/dang/Pictures/Screenshots/%F_%H_%M_%S.png'"
+
 mode "media" {
     bindsym k exec "amixer -q sset Master,0 1+ unmute",
     bindsym j exec "amixer -q sset Master,0 1- unmute",
