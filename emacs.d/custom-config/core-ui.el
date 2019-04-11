@@ -39,6 +39,8 @@
  "d" 'text-scale-decrease
  "i" 'text-scale-increase)
 
+(setq split-width-threshold 120)
+
 ;; This scales up the size of the currently selected window to make
 ;; working a bit easier on a small screen
 (use-package golden-ratio
