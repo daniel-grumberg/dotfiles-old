@@ -44,7 +44,8 @@
 
 (defvar dang/language-support-features
   '((dang/c-c++-support . "c-c++-support")
-    (dang/latex-support . "latex-support"))
+    (dang/latex-support . "latex-support")
+    (dang/llvm-support . "llvm-support"))
   "Association list of language support features and filenames where to find them within the custom-config directory")
 
 ;; Load core features
