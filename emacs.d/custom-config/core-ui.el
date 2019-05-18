@@ -43,10 +43,10 @@
 
 ;; This scales up the size of the currently selected window to make
 ;; working a bit easier on a small screen
-(use-package golden-ratio
-  :config
-  (setq golden-ratio-auto-scale t)
-  (golden-ratio-mode 1))
+;; (use-package golden-ratio
+;;   :config
+;;   (golden-ratio-mode 1)
+;;   (setq golden-ratio-auto-scale t))
 
 ;; Parameters that ensure that side windows maintain their purpose and
 ;; can not be accidentaly deleted
