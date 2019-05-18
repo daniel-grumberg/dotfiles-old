@@ -7,11 +7,14 @@
 (tooltip-mode -1)
 (blink-cursor-mode -1)
 
+;; Allow finer grained resize of frames
+(setq frame-resize-pixelwise t)
+
 ;; Set the default font
 (add-to-list 'default-frame-alist '(font . "Source Code Pro 12"))
 
-;; Ensure we start up in full screen mode
-(add-to-list 'default-frame-alist '(fullscreen . fullscreen))
+;; Ensure we get maximized frames
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; macOS specific UI tweaks
 (when (eq system-type 'darwin)
