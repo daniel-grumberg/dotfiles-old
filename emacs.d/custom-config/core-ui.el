@@ -18,10 +18,8 @@
 
 ;; macOS specific UI tweaks
 (when (eq system-type 'darwin)
-  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-  (add-to-list 'default-frame-alist '(ns-appearance . light))
-  (setq ns-use-proxy-icon  nil
-	frame-title-format nil))
+  ;; (add-to-list 'default-frame-alist '(ns-transparent-titlebar . f))
+  (add-to-list 'default-frame-alist '(ns-appearance . light)))
 
 ;; Editor theme (found at https://github.com/greduan/emacs-theme-gruvbox)
 (use-package gruvbox-theme
