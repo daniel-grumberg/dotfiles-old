@@ -21,6 +21,22 @@
   ;; (add-to-list 'default-frame-alist '(ns-transparent-titlebar . f))
   (add-to-list 'default-frame-alist '(ns-appearance . light)))
 
+(dang/generate-override-keymap dang/leader/def "w" "windows")
+(dang/windows/def
+  "1" '(delete-other-windows :wk "delete-other-window")
+  "b" 'balance-windows
+  "d" '(delete-window :wk "delete-window") ;; Needed for some reason
+  "D" '(kill-buffer-and-window :wk "delete-buffer-and-window") ;; Needed for some reason
+  "h" '(windmove-left :wk "window-right")
+  "j" '(windmove-down :wk "window-down")
+  "k" '(windmove-up :wk "window-up")
+  "l" '(windmove-right :wk "window-right")
+  "m" 'maximize-window
+  "M" '(toggle-frame-maximized :wk "maximize-frame-toggle")
+  "o" 'other-window
+  "s" 'split-window-below
+  "v" 'split-window-right)
+
 ;; Editor theme (found at https://github.com/greduan/emacs-theme-gruvbox)
 (use-package gruvbox-theme
   :config
