@@ -11,7 +11,7 @@
 (setq frame-resize-pixelwise t)
 
 ;; Set the default font
-(add-to-list 'default-frame-alist '(font . "Source Code Pro 12"))
+(add-to-list 'default-frame-alist '(font . "Source Code Pro 11"))
 
 ;; Ensure we get maximized frames
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
@@ -88,7 +88,7 @@
   (dang/windows/def
     "T" '(neotree-toggle :wk "toggle-tree"))
   :config
-  (setq neo-theme'arrows))
+  (setq neo-theme 'arrows))
 
 (dang/windows/def
   "t" '(window-toggle-side-windows :wk "toggle-side-windows"))
