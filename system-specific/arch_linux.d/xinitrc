@@ -35,5 +35,7 @@ fi
 xset b off
 xset b 0 0 0
 
-xrandr --output DP-4 --primary
+# Ensure the resolution is good in the VM
+xrandr --output Virtual-1 --mode 1360x768
+
 exec i3
