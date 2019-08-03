@@ -11,7 +11,7 @@
 (setq frame-resize-pixelwise t)
 
 ;; Set the default font
-(add-to-list 'default-frame-alist '(font . "Source Code Pro 11"))
+(add-to-list 'default-frame-alist '(font . "Source Code Pro 13"))
 
 ;; Ensure we get maximized frames
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
