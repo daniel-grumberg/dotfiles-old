@@ -16,10 +16,12 @@
     "p" '(xref-pop-marker-stack :wk "goto-previous")
     "r" 'lsp-rename
     "R" 'lsp-find-references)
+  :config
   (setq lsp-inhibit-message t
-        lsp-auto-guees-root t
+        lsp-auto-guess-root t
         lsp-auto-configure t
-        lsp-enable-indentation t))
+        lsp-enable-indentation t
+        lsp-enable-snippet nil))
 
 (use-package lsp-ui
   :commands lsp-ui-mode
