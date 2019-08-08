@@ -16,7 +16,6 @@ set $mod Mod1
 font pango:Source Code Pro 9
 
 # $i3-background
-exec --no-startup-id feh --randomize --bg-fill "$(xdg-user-dir PICTURES)/Wallpaper/"
 
 
 # gruvbox theme for i3 by okraits, http://okraits.de
@@ -167,7 +166,7 @@ bindsym $mod+r mode "resize"
 mode "launcher" {
     bindsym f exec firefox, mode "default"
     bindsym c exec claws-mail, mode "default"
-    bindsym e exec emacsclient -c, mode "default"
+    bindsym e exec emacs, mode "default"
     bindsym m exec mupdf, mode "default"
 
     bindsym Escape mode "default"

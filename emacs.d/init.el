@@ -1,7 +1,6 @@
-;; Ensure this is a server so we can use emacsclient, notbaly for synctex
-(when (eq system-type 'darwin)
-  (load "server")
-  (unless (server-running-p) (server-start)))
+;; Ensure this is a server so we can use emacsclient, notbaly for
+(load "server")
+(unless (server-running-p) (server-start))
 
 ;; Easily locate handwriten configurations
 (add-to-list 'load-path (expand-file-name "custom-config" user-emacs-directory))
