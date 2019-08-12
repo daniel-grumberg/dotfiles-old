@@ -129,18 +129,6 @@ The forms of the generated symbols is:
 	       (ibuffer-auto-mode 1)
 	       (ibuffer-switch-to-saved-filter-groups "default"))))
 
-;; Select and act on windows in tree-style
-(use-package ace-window
-  :init
-  (defun swap-windows-and-keep-focus ()
-    (interactive)
-    (ace-swap-window)
-    (aw-flip-window))
-  :general
-  (dang/windows/def
-    "f" '(swap-windows-and-keep-focus :wk "flip-windows")
-    "S" '(ace-window :wk "select-window")))
-
 ;; Narrowing completions across the editor using ivy
 (use-package ivy
   :demand t

@@ -25,19 +25,46 @@
 
 (dang/generate-override-keymap dang/leader/def "w" "windows")
 (dang/windows/def
-  "1" '(delete-other-windows :wk "delete-other-window")
   "b" 'balance-windows
-  "d" '(delete-window :wk "delete-window") ;; Needed for some reason
-  "D" '(kill-buffer-and-window :wk "delete-buffer-and-window") ;; Needed for some reason
-  "h" '(windmove-left :wk "window-right")
-  "j" '(windmove-down :wk "window-down")
-  "k" '(windmove-up :wk "window-up")
-  "l" '(windmove-right :wk "window-right")
-  "m" 'maximize-window
-  "M" '(toggle-frame-maximized :wk "maximize-frame-toggle")
-  "o" 'other-window
-  "s" 'split-window-below
-  "v" 'split-window-right)
+  "D" '(delete-window :wk "delete-current-window")
+  "K" '(kill-buffer-and-window :wk "delete-current-buffer-and-window")
+  "m" '(toggle-frame-maximized :wk "maximize-frame-toggle")
+  "M" 'maximize-window
+  "S" '(split-window-below :wk "split-current-window-below")
+  "V" '(split-window-right:wk "split-current-window-right"))
+
+(defun dang/ace-kill-buffer-and-window ()
+  (interactive)
+  (require 'ace-window)
+  (aw-select " Ace - Kill Buffer and Window"
+             #'kill-buffer-and-window))
+
+(defun dang/ace-split-below ()
+  (interactive)
+  (require 'ace-window)
+  (aw-select " Ace - Split Below"
+             #'aw-split-window-vert))
+
+(defun dang/ace-split-right()
+  (interactive)
+  (require 'ace-window)
+  (aw-select " Ace - Split right"
+             #'aw-split-window-horz))
+
+(use-package ace-window
+  :commands (dang/ace-kill-buffer-and-window dang/ace-split-below dang/ace-split-right)
+  :general
+  (dang/windows/def
+    "d" '(ace-delete-window :wk "delete-window") ;; Needed for some reason
+    "f" '(ace-swap-window :wk "swap-windows")
+    "k" '(dang/ace-kill-buffer-and-window :wk "delete-buffer-and-window")
+    "o" '(ace-delete-other-windows :wk "delete-other-windows")
+    "s" '(dang/ace-split-below :wk "split-window-below")
+    "v" '(dang/ace-split-right :wk "split-window-right")
+    "w" '(ace-window :wk "select-window"))
+  :config
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
+        aw-swap-invert t))
 
 ;; Editor theme (found at https://github.com/greduan/emacs-theme-gruvbox)
 (use-package gruvbox-theme
