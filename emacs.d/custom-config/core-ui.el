@@ -7,6 +7,8 @@
 (tooltip-mode -1)
 (blink-cursor-mode -1)
 
+(fset 'yes-or-no-p 'y-or-n-p)
+
 ;; Allow finer grained resize of frames
 (setq frame-resize-pixelwise t)
 
@@ -58,37 +60,16 @@
 
 (setq split-width-threshold 120)
 
-;; This scales up the size of the currently selected window to make
-;; working a bit easier on a small screen
-;; (use-package golden-ratio
-;;   :config
-;;   (golden-ratio-mode 1)
-;;   (setq golden-ratio-auto-scale t))
-
-;; Parameters that ensure that side windows maintain their purpose and
-;; can not be accidentaly deleted
-(defvar dang/side-window-params
-  '(window-parameters . ((no-other-window . t)
-                         (no-delete-other-windows . t))))
-
 ;; Windows should be able to be resized
-;; (setq fit-window-to-buffer-horizontally t)
+(setq fit-window-to-buffer-horizontally t)
 ;;Ensure side windows maitain their respective sizes
 (setq window-resize-pixelwise t)
 (setq display-buffer-alist
-      `(("\\*\\(help\\|grep\\|compilation\\|Man .*\\)\\*" display-buffer-in-side-window
-         (side . bottom) (slot . 0)
-         (preserve-size . (t . nil)) ,dang/side-window-params)
-        ("\\*xref\\*" display-buffer-in-side-window
-         (side . right) (slot . 0) (window-width . fit-window-to-buffer)
-         (preserve-size . (t . nil)) ,dang/side-window-params)))
-
-(use-package neotree
-  :general
-  (dang/windows/def
-    "T" '(neotree-toggle :wk "toggle-tree"))
-  :config
-  (setq neo-theme 'arrows))
+      `(("\\*compilation\\*" display-buffer-in-side-window
+        (side . bottom) (slot . 0) (preserve-size . (t . nil)))
+       ("\\*\\(help\\|grep\\|xref\\|Man .*\\)\\*" display-buffer-in-side-window
+        (side . right) (slot . 0) (window-width . fit-window-to-buffer)
+        (preserve-size . (t . nil)) )))
 
 (dang/windows/def
   "t" '(window-toggle-side-windows :wk "toggle-side-windows"))
