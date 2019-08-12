@@ -15,8 +15,13 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+;; We want the built-in org mode
+;; This needs to be done ensure no one pulls in a different org-mode
+(straight-use-package '(org :type built-in))
+
 ;; Install and configure use-package to use straight under the hood
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
+
 
 (provide 'dang/package-management)
