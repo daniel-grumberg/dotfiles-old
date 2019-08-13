@@ -35,7 +35,6 @@ fi
 xset b off
 xset b 0 0 0
 
-# Ensure the resolution is good in the VM
-xrandr --output Virtual-1 --mode 1360x768
-
+feh --bg-fill "/home/dang/Pictures/Wallpaper/retro-3d-mountains-stripes.jpg"
+VBoxClient-All
 exec i3
