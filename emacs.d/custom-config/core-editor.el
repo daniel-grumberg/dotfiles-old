@@ -97,7 +97,7 @@ The forms of the generated symbols is:
 
   (dang/files/def
     "d" 'delete-file
-    "o" '(find-file :wk "open-file")
+    "O" '(find-file :wk "open-file-current-window")
     "s" '(save-buffer :wk "save-file"))
 
   (dang/text/def

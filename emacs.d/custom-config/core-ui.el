@@ -13,7 +13,7 @@
 (setq frame-resize-pixelwise t)
 
 ;; Set the default font
-(add-to-list 'default-frame-alist '(font . "Source Code Pro 13"))
+(add-to-list 'default-frame-alist '(font . "Menlo 13"))
 
 ;; Ensure we get maximized frames
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
@@ -31,7 +31,7 @@
   "m" '(toggle-frame-maximized :wk "maximize-frame-toggle")
   "M" 'maximize-window
   "S" '(split-window-below :wk "split-current-window-below")
-  "V" '(split-window-right:wk "split-current-window-right"))
+  "V" '(split-window-right :wk "split-current-window-right"))
 
 (defun dang/ace-kill-buffer-and-window ()
   (interactive)
@@ -51,6 +51,18 @@
   (aw-select " Ace - Split right"
              #'aw-split-window-horz))
 
+(defun dang/ace-find-file (file &optional wildcards)
+  "Use ace window to select a window for find-file"
+  ;; We are going to use the same interactive setup as find-file and forward to it
+  (interactive
+   (find-file-read-args "Find file: "
+                        (confirm-nonexistent-file-or-buffer)))
+  (require 'ace-window)
+  (aw-select " Ace - Find File"
+             (lambda (window)
+               (aw-switch-to-window window)
+               (find-file file wildcards))))
+
 (use-package ace-window
   :commands (dang/ace-kill-buffer-and-window dang/ace-split-below dang/ace-split-right)
   :general
@@ -62,21 +74,25 @@
     "s" '(dang/ace-split-below :wk "split-window-below")
     "v" '(dang/ace-split-right :wk "split-window-right")
     "w" '(ace-window :wk "select-window"))
+  (dang/files/def
+    "o" '(dang/ace-find-file :wk "open-file"))
   :config
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
-        aw-swap-invert t))
+        aw-swap-invert t
+        aw-scope 'frame)
+  (custom-set-faces
+   '(aw-leading-char-face
+     ((t (:inherit ace-jump-face-foreground :height 3.0))))))
 
-;; Editor theme (found at https://github.com/greduan/emacs-theme-gruvbox)
-(use-package gruvbox-theme
-  :config
-  (load-theme 'gruvbox-light-soft t))
+(use-package plan9-theme)
 
 (use-package dashboard
   :init
   (add-hook 'after-init-hook 'dashboard-refresh-buffer)
   :config
   (dashboard-setup-startup-hook)
-  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))
+  (setq dashboard-center-content t
+        initial-buffer-choice (lambda () (get-buffer "*dashboard*"))
         dashboard-items '((recents  . 5)
                           (projects . 5))))
 
