@@ -8,34 +8,42 @@ urxvt.perl-ext-common: default,matcher,font-size
 urxvt.urlLauncher: /usr/bin/firefox
 urxvt.matcher.button: C1
 
-urxvt.font: xft:Source Code Pro:pixelsize=13
-urxvt.boldFont: xft:Source Code Pro:pixelsize=13:weight=bold
+urxvt.font: xft:Pragmata Pro:pixelsize=13
+urxvt.boldFont: xft:Pragmata Pro:pixelsize=13:weight=bold
 
-! hard contrast: *background: #f9f5d7
-*background: #fbf1c7
-! soft contrast: *background: #f2e5bc
-*foreground: #3c3836
-! Black + DarkGrey
-*color0:  #fdf4c1
-*color8:  #928374
-! DarkRed + Red
-*color1:  #cc241d
-*color9:  #9d0006
-! DarkGreen + Green
-*color2:  #98971a
-*color10: #79740e
-! DarkYellow + Yellow
-*color3:  #d79921
-*color11: #b57614
-! DarkBlue + Blue
-*color4:  #458588
-*color12: #076678
-! DarkMagenta + Magenta
-*color5:  #b16286
-*color13: #8f3f71
-! DarkCyan + Cyan
-*color6:  #689d6a
-*color14: #427b58
-! LightGrey + White
-*color7:  #7c6f64
-*color15: #3c3836
+
+! colors
+URxvt.foreground: #424242
+URxvt.background: #FFFFE8
+! black
+URxvt.color0: #424242
+URxvt.color8: #988D6D
+! red
+URxvt.color1: #B85C57
+URxvt.color9: #B85C57
+! green
+URxvt.color2: #40883F
+URxvt.color10: #40883F
+! yellow
+URxvt.color3: #989848
+URxvt.color11: #F8FCE8
+! blue
+URxvt.color4: #0287C8
+URxvt.color12: #0287C8
+! magenta
+URxvt.color5: #8888C8
+URxvt.color13: #8888C8
+! cyan
+URxvt.color6: #4FA8A8
+URxvt.color14: #98ECE8
+! white
+URxvt.color7: #FFFFD8
+URxvt.color15: #E5E5D0
+
+URxvt.intensityStyles: false
+
+! scrollbar
+URxvt.scrollstyle: plain
+URxvt.scrollColor: #E5E5D0
+URxvt.troughColor: #FFFFD8
+URxvt.borderColor: #FFFFE8

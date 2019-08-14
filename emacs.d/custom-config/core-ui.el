@@ -11,8 +11,12 @@
 
 ;; Allow finer grained resize of frames
 (setq frame-resize-pixelwise t)
-2
-(set-frame-font "Pragmata Pro Mono:size=14" t t)
+
+(defvar pragmata-font-string (if (eq system-type 'darwin)
+                                 "Pragmata Pro Mono:size=13"
+                               "Pragmata Pro:size=13"))
+
+(set-frame-font pragmata-font-string t t)
 
 ;; Ensure we get maximized frames
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
