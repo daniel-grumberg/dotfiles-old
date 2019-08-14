@@ -11,7 +11,7 @@
 
 ;; Allow finer grained resize of frames
 (setq frame-resize-pixelwise t)
-
+2
 (set-frame-font "Pragmata Pro Mono:size=14" t t)
 
 ;; Ensure we get maximized frames
@@ -23,6 +23,39 @@
 
 ;; Theme
 (use-package plan9-theme)
+
+(setq projectile-mode-line
+      '(:eval (propertize (if (projectile-project-p)
+                              (format " Projectile[%s]"
+                                      (projectile-project-name))
+                            "")
+                          'face 'font-lock-comment-face)))
+
+(setq-default mode-line-format
+              (list
+               '(:eval (propertize " %f "
+                                    'face
+                                    (let ((face (buffer-modified-p)))
+                                      (if face 'font-lock-warning-face
+                                        'font-lock-builtin-face))))
+                '(:eval evil-mode-line-tag)
+                " L%l "
+                ;; relative position, size of file
+                " ["
+                (propertize "%p" 'face 'font-lock-constant-face) ;; % above top
+                "/"
+                (propertize "%I" 'face 'font-lock-constant-face) ;; size
+                "]"
+                '(:eval (propertize vc-mode
+                                    'face 'font-lock-comment-face))
+                projectile-mode-line
+                ;; spaces to align right
+                '(:eval (propertize
+                         " " 'display
+                         `((space :align-to (- (+ right right-fringe right-margin)
+                                               ,(+ 3 (string-width mode-name)))))))
+                ;; the current major mode
+                (propertize " %m " 'face 'font-lock-string-face)))
 
 ;; Startup screen
 (use-package dashboard
