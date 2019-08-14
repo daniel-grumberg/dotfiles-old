@@ -224,3 +224,5 @@ bar {
     tray_output primary
 }
 
+# Ensure emacs is always tabbed
+for_window [class="Emacs"] layout tabbed

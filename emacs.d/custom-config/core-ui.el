@@ -14,8 +14,8 @@
 (setq frame-resize-pixelwise t)
 
 (defvar pragmata-font-string (if (eq system-type 'darwin)
-                                 "Pragmata Pro Mono:size=13"
-                               "Pragmata Pro:size=13"))
+                                 "Pragmata Pro Mono:size=14"
+                               "Pragmata Pro:size=14"))
 
 (set-frame-font pragmata-font-string t t)
 
