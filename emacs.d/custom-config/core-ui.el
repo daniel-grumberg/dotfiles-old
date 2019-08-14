@@ -73,10 +73,6 @@
         dashboard-items '((recents  . 5)
                           (projects . 5))))
 
-;; Misc
-(add-hook 'special-mode-hook (lambda () (display-line-numbers-mode -1)))
-(add-hook 'info-mode-hook (lambda () (display-line-numbers-mode -1)))
-
 ;; Window management proper
 (setq split-width-threshold 120)
 ;; Windows should be able to be resized

@@ -8,7 +8,8 @@
 
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
 
-(global-visual-line-mode)
+(add-hook 'prog-mode-hook '(lambda () (display-line-numbers-mode 1)))
+(add-hook 'text-mode-hook '(lambda () (display-line-numbers-mode 1)))
 
 (use-package visual-fill-column
   :hook (text-mode . visual-fill-column-mode)
@@ -17,8 +18,6 @@
 
 (setq show-paren-delay 0)
 (show-paren-mode 1)
-
-(global-display-line-numbers-mode 1)
 
 ;; Make the editor more discoverable (provides a popup menu for incomplete chord prefixes)
 (use-package which-key

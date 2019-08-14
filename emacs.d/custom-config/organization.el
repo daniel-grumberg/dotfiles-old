@@ -164,7 +164,4 @@
   "r" '(org-capture-refile :wk "finalize-and-refile")
   "a" '(org-capture-kill :wk "abort"))
 
-(use-package org-bullets
-  :hook ((org-mode . org-bullets-mode)))
-
 (provide 'dang/org-mode)
