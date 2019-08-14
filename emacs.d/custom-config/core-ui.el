@@ -21,6 +21,40 @@
 (when (eq system-type 'darwin)
   (add-to-list 'default-frame-alist '(ns-appearance . light)))
 
+;; Theme
+(use-package plan9-theme)
+
+;; Startup screen
+(use-package dashboard
+  :init
+  (add-hook 'after-init-hook 'dashboard-refresh-buffer)
+  :config
+  (dashboard-setup-startup-hook)
+  (setq dashboard-center-content t
+        initial-buffer-choice (lambda () (get-buffer "*dashboard*"))
+        dashboard-items '((recents  . 5)
+                          (projects . 5))))
+
+;; Misc
+(add-hook 'special-mode-hook (lambda () (display-line-numbers-mode -1)))
+(add-hook 'info-mode-hook (lambda () (display-line-numbers-mode -1)))
+
+;; Window management proper
+(setq split-width-threshold 120)
+;; Windows should be able to be resized
+(setq fit-window-to-buffer-horizontally t)
+;;Ensure side windows maitain their respective sizes
+(setq window-resize-pixelwise t)
+(setq display-buffer-alist
+      `(("\\*compilation\\*" display-buffer-in-side-window
+         (side . bottom) (slot . 0) (preserve-size . (t . nil)))
+        ("\\*\\(help\\|grep\\|xref\\)\\*" display-buffer-in-side-window
+         (side . right) (slot . 0) (window-width . fit-window-to-buffer)
+         (preserve-size . (nil . t)))
+        ("\\*Man .*\\*" display-buffer-in-side-window
+         ;; For some reason using fit-window-to-buffer on man pages makes the buffer tiny in width
+         (side . right) (slot . 0))))
+
 (dang/generate-override-keymap dang/leader/def "w" "windows")
 (dang/windows/def
   "b" 'balance-windows
@@ -29,23 +63,21 @@
   "m" '(toggle-frame-maximized :wk "maximize-frame-toggle")
   "M" 'maximize-window
   "S" '(split-window-below :wk "split-current-window-below")
+  "t" '(window-toggle-side-windows :wk "toggle-side-windows")
   "V" '(split-window-right :wk "split-current-window-right"))
 
 (defun dang/ace-kill-buffer-and-window ()
   (interactive)
-  (require 'ace-window)
   (aw-select " Ace - Kill Buffer and Window"
              #'kill-buffer-and-window))
 
 (defun dang/ace-split-below ()
   (interactive)
-  (require 'ace-window)
   (aw-select " Ace - Split Below"
              #'aw-split-window-vert))
 
 (defun dang/ace-split-right()
   (interactive)
-  (require 'ace-window)
   (aw-select " Ace - Split right"
              #'aw-split-window-horz))
 
@@ -55,14 +87,13 @@
   (interactive
    (find-file-read-args "Find file: "
                         (confirm-nonexistent-file-or-buffer)))
-  (require 'ace-window)
   (aw-select " Ace - Find File"
              (lambda (window)
                (aw-switch-to-window window)
                (find-file file wildcards))))
 
 (use-package ace-window
-  :commands (dang/ace-kill-buffer-and-window dang/ace-split-below dang/ace-split-right)
+  :commands (aw-select)
   :general
   (dang/windows/def
     "d" '(ace-delete-window :wk "delete-window") ;; Needed for some reason
@@ -82,37 +113,9 @@
    '(aw-leading-char-face
      ((t (:inherit ace-jump-face-foreground :height 3.0))))))
 
-(use-package plan9-theme)
-
-(use-package dashboard
-  :init
-  (add-hook 'after-init-hook 'dashboard-refresh-buffer)
-  :config
-  (dashboard-setup-startup-hook)
-  (setq dashboard-center-content t
-        initial-buffer-choice (lambda () (get-buffer "*dashboard*"))
-        dashboard-items '((recents  . 5)
-                          (projects . 5))))
-
 ;; Add mappings for text display manipulation
 (dang/text/def
  "d" 'text-scale-decrease
  "i" 'text-scale-increase)
-
-(setq split-width-threshold 120)
-
-;; Windows should be able to be resized
-(setq fit-window-to-buffer-horizontally t)
-;;Ensure side windows maitain their respective sizes
-(setq window-resize-pixelwise t)
-(setq display-buffer-alist
-      `(("\\*compilation\\*" display-buffer-in-side-window
-        (side . bottom) (slot . 0) (preserve-size . (t . nil)))
-       ("\\*\\(help\\|grep\\|xref\\|Man .*\\)\\*" display-buffer-in-side-window
-        (side . right) (slot . 0) (window-width . fit-window-to-buffer)
-        (preserve-size . (t . nil)) )))
-
-(dang/windows/def
-  "t" '(window-toggle-side-windows :wk "toggle-side-windows"))
 
 (provide 'dang/core-ui)
