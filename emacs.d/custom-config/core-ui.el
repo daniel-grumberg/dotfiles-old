@@ -12,8 +12,7 @@
 ;; Allow finer grained resize of frames
 (setq frame-resize-pixelwise t)
 
-;; Set the default font
-(add-to-list 'default-frame-alist '(font . "Menlo 13"))
+(set-frame-font "Pragmata Pro Mono:size=14" t t)
 
 ;; Ensure we get maximized frames
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
