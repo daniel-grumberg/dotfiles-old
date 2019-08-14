@@ -19,7 +19,6 @@
 
 ;; macOS specific UI tweaks
 (when (eq system-type 'darwin)
-  ;; (add-to-list 'default-frame-alist '(ns-transparent-titlebar . f))
   (add-to-list 'default-frame-alist '(ns-appearance . light)))
 
 (dang/generate-override-keymap dang/leader/def "w" "windows")
