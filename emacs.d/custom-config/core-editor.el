@@ -38,10 +38,10 @@
     :non-normal-prefix "M-SPC")
 
   (dang/leader/def
-    "TAB" '((lambda ()
-              (interactive)
-              (switch-to-buffer (other-buffer)))
-            :wk "previous-buffer"))
+    "TAB" '((lambda () (interactive) (switch-to-buffer (other-buffer))) :wk "previous-buffer")
+    "SPC" '(counsel-M-x :wk "execute-command")
+    "k" 'save-buffers-kill-emacs
+    "K" 'kill-emacs)
 
   (general-create-definer dang/local/def
     :states '(normal visual insert emacs)
@@ -74,7 +74,6 @@ The forms of the generated symbols is:
   (dang/generate-override-keymap dang/leader/def "c" "completions")
   (dang/generate-override-keymap dang/leader/def "f" "files")
   (dang/generate-override-keymap dang/leader/def "h" "help")
-  (dang/generate-override-keymap dang/leader/def "s" "search")
   (dang/generate-override-keymap dang/leader/def "t" "text")
 
   (dang/buffers/def
@@ -147,14 +146,7 @@ The forms of the generated symbols is:
 
 ;; Enable various narrowing completion enabled commands
 (use-package counsel
-  :demand t
-  :general
-  (dang/search/def
-    "/" '(counsel-grep-or-swiper :wk "rg-or-swipe")
-    "f" '(counsel-find-file :wk "find-file"))
-  :config
-  (setq counsel-grep-base-command
-        "rg -i -M 120 --no-heading --line-number --color never '%s' %s")) ;; Use ripgrep because it works faster and is accurate enough
+  :demand t)
 
 ;; Install and enable evil-mode to get vim emulation goodness
 (use-package evil
@@ -192,9 +184,9 @@ The forms of the generated symbols is:
 (use-package company
   :demand t
   :init
-  (setq dang/default-company-backends '(company-capf company-files))
-  (setq company-backends dang/default-company-backends)
   :general
+  (company-active-map
+   "RET" 'company-complete-selection)
   (dang/completions/def
     "c" 'company-complete
     "o" 'company-other-backend)
