@@ -1,4 +1,4 @@
-;; Ensure this is a server so we can use emacsclient, notbaly for
+;; Ensure this is a server so we can use emacsclient, notably for SyncTeX
 (load "server")
 (unless (server-running-p) (server-start))
 
