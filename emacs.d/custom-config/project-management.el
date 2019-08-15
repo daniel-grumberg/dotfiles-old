@@ -1,12 +1,6 @@
 (require 'dang/core-ui)
 
-;; Use emacs own ls emulation, the reasoning here is that we should
-;; never be using this directories too large for interactive use,
-;; while this affords us additional flexibility for sorting the
-;; results of the ls commands
 (setq dired-use-ls-dired nil)
-(setq ls-lisp-use-insert-directory-program nil)
-(require 'ls-lisp)
 
 (defun dang/dwim-toggle-or-open (&optional find-file-fn)
   "Toggle subtree or open the file."
