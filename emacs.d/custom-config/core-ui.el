@@ -29,6 +29,10 @@
 ;; Theme
 (use-package plan9-theme)
 
+(use-package all-the-icons)
+(use-package all-the-icons-dired
+  :hook (dired-mode . all-the-icons-dired-mode))
+
 (setq projectile-mode-line
       '(:eval (propertize (if (projectile-project-p)
                               (format " Projectile[%s]"

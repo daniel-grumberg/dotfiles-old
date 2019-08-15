@@ -22,10 +22,10 @@
   "Toggle subtree or the open file on mouse-click in dired."
   (interactive "e")
   (let ((window (posn-window (event-end event)))
-        (pos (posn-point (event-end event)))
+        (pos (posn-point (event-end event))))
     (select-window window)
     (goto-char pos)
-    (dang/dwim-toggle-or-open))))
+    (dang/dwim-toggle-or-open)))
 
 (defun dang/open-ace-horizontal-split ()
   "Toggle subtree or the open file in a horizontal split"
