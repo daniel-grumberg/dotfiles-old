@@ -1,25 +1,62 @@
 (require 'dang/core-ui)
 
+;; Use emacs own ls emulation, the reasoning here is that we should
+;; never be using this directories too large for interactive use,
+;; while this affords us additional flexibility for sorting the
+;; results of the ls commands
 (setq dired-use-ls-dired nil)
+(setq ls-lisp-use-insert-directory-program nil)
+(require 'ls-lisp)
 
-(defun dang/dwim-toggle-or-open ()
+(defun dang/dwim-toggle-or-open (&optional find-file-fn)
   "Toggle subtree or open the file."
   (interactive)
-  (let ((file (dired-get-file-for-visit)))
+  (let ((find-file-fn (or find-file-fn 'dang/ace-find-file))
+        (file (dired-get-file-for-visit)))
     (if (file-directory-p file)
       (progn (dired-subtree-cycle)
              (revert-buffer))
-      (dang/ace-find-file file))))
+      (funcall-interactively find-file-fn file))))
 
 (defun dang/mouse-dwim-toggle-or-open (event)
   "Toggle subtree or the open file on mouse-click in dired."
   (interactive "e")
   (let ((window (posn-window (event-end event)))
         (pos (posn-point (event-end event)))
-        (file nil))
     (select-window window)
     (goto-char pos)
-    (dang/dwim-toggle-or-open)))
+    (dang/dwim-toggle-or-open))))
+
+(defun dang/open-ace-horizontal-split ()
+  "Toggle subtree or the open file in a horizontal split"
+  (interactive)
+  (dang/dwim-toggle-or-open
+   (lambda (file &optional wildcards)
+     (interactive)
+     (select-window (dang/ace-split-right))
+     (find-file file))))
+
+(defun dang/open-ace-vertical-split ()
+  "Toggle subtree or the open file in a vertical split"
+  (interactive)
+  (dang/dwim-toggle-or-open
+   (lambda (file &optional wildcards)
+     (interactive)
+     (select-window (dang/ace-split-below))
+     (find-file file))))
+
+(defun dang/dired-copy-path-at-point ()
+  "Put the absolute path to the file at point at the beginning of the
+kill-ring"
+  (interactive)
+  (kill-new (dired-get-filename nil t)))
+
+(defun dang/dired-copy-path-to-root ()
+  "Put the absolute path to the root of the project (the
+default-directory of the project explorer buffer) at the beginning of
+the kill-ring"
+  (interactive)
+  (kill-new default-directory))
 
 (use-package dired-subtree
   :demand t
@@ -29,6 +66,11 @@
    "<enter>" 'dang/dwim-toggle-or-open
    "<return>" 'dang/dwim-toggle-or-open
    "<tab>" 'dang/dwim-toggle-or-open
+   "h" 'dang/open-ace-vertival-split
+   "o" 'dang/dwim-toggle-or-open
+   "v" 'dang/open-ace-horizontal-split
+   "yr" 'dang/dired-copy-path-to-root
+   "yy" 'dang/dired-copy-path-at-point
    ;; For weird historical reasons emacs translates mouse-1 clicks to
    ;; mouse-2 clicks for link events such as filenames in
    ;; dired... More info at:
@@ -52,6 +94,7 @@ Shows the projectile root folder using dired on the left side of
 the frame and makes it a dedicated window for that buffer."
   (let ((buffer (dired-noselect (projectile-project-root))))
     (with-current-buffer buffer
+      (rename-buffer (format "*Explorer %s*" (projectile-project-name)))
       (dired-hide-details-mode t)
       (display-line-numbers-mode -1))
     (display-buffer-in-side-window buffer '((side . left) (window-width . 35)))
