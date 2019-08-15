@@ -35,6 +35,10 @@ fi
 xset b off
 xset b 0 0 0
 
-feh --bg-fill "/home/dang/Pictures/Wallpaper/retro-3d-mountains-stripes.jpg"
-VBoxClient-All
+if [ $(systemd-detect-virt) == "oracle" ]
+then
+    VBoxClient-All
+fi
+
+feh --randomize --bg-fill "$(xdg-user-dir PICTURES)/Wallpaper/"
 exec i3
