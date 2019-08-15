@@ -51,7 +51,7 @@
                 "/"
                 (propertize "%I" 'face 'font-lock-constant-face) ;; size
                 "]"
-                '(:eval (propertize vc-mode
+                '(:eval (propertize (or vc-mode "")
                                     'face 'font-lock-comment-face))
                 projectile-mode-line
                 ;; spaces to align right
