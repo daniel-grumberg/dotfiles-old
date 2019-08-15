@@ -79,7 +79,7 @@ the frame and makes it a dedicated window for that buffer."
    "g" '(projectile-vc :wk "version-control")
    "I" '(projectile-invalidate-cache :wk "invalidate-project-cache")
    "k" '(projectile-kill-buffers :wk "kill-project-buffers")
-   "p" '(projectile-switch-project :wk "switch-project")
+   "p" '(projectile-switch-project :wk "open-project")
    "t" '(projectile-test-project :wk "test")
    "/" '(projectile-grep :wk "grep"))
   :config
@@ -93,6 +93,9 @@ the frame and makes it a dedicated window for that buffer."
 (use-package nameframe-projectile
   :demand t
   :after nameframe
+  :general
+  (dang/project/def
+    "P" '(nameframe-switch-frame :wk "switch-project"))
   :config
   (nameframe-projectile-mode t))
 
