@@ -17,21 +17,20 @@
     "r" 'lsp-rename
     "R" 'lsp-find-references)
   :config
-  (setq lsp-inhibit-message t
-        lsp-auto-guess-root t
-        lsp-auto-configure t
+  (setq lsp-auto-guess-root t
         lsp-enable-indentation t
-        lsp-enable-snippet nil))
+        lsp-enable-snippet t
+        lsp-prefer-flymake nil
+        lsp-auto-configure t))
 
 (use-package lsp-ui
   :commands lsp-ui-mode
-  :hook (lsp-mode . lsp-ui-mode)
-  :config
-  (setq lsp-prefer-flymake nil))
+  :hook (lsp-mode . lsp-ui-mode))
 
 (use-package company-lsp
   :commands company-lsp
   :config
-  (push 'company-lsp company-backends))
+  (push 'company-lsp company-backends)
+  (setq company-transformers nil company-lsp-async t company-lsp-cache-candidates nil))
 
 (provide 'dang/lsp-features)

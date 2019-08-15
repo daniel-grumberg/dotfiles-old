@@ -21,7 +21,7 @@
 (add-hook 'c++-mode-hook 'dang/set-llvm-style)
 
 (use-package ccls
-  :init
+  :config
   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc)) ;; Flycheck should not report garbage
   :hook ((c-mode c++-mode objc-mode) .
          (lambda () (require 'ccls) (lsp))))
