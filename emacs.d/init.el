@@ -34,6 +34,7 @@
   '((dang/org-mode . "organization")
     (dang/spellchecking . "spellchecking")
     (dang/git-integration . "git-integration")
+    (dang/snippet . "snippet")
     (dang/project-management . "project-management")
     (dang/lsp-features . "lsp-features")
     (dang/terminal-support . "terminal-support")
