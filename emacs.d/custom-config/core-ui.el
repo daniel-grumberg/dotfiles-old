@@ -31,6 +31,7 @@
 
 (use-package all-the-icons)
 (use-package all-the-icons-dired
+  :after (all-the-icons)
   :hook (dired-mode . all-the-icons-dired-mode))
 
 (setq projectile-mode-line
@@ -72,7 +73,10 @@
   (add-hook 'after-init-hook 'dashboard-refresh-buffer)
   :config
   (dashboard-setup-startup-hook)
-  (setq dashboard-center-content t
+  (setq dashboard-set-heading-icons t
+        dashboard-set-file-icons t
+        dashboard-set-navigator t
+        dashboard-set-init-info t
         initial-buffer-choice (lambda () (get-buffer "*dashboard*"))
         dashboard-items '((recents  . 5)
                           (projects . 5))))
