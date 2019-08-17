@@ -41,7 +41,6 @@
 
   (dang/leader/def
     "TAB" '((lambda () (interactive) (switch-to-buffer (other-buffer))) :wk "previous-buffer")
-    "SPC" '(counsel-M-x :wk "execute-command")
     "k" 'save-buffers-kill-emacs
     "K" 'kill-emacs)
 
@@ -76,6 +75,7 @@ The forms of the generated symbols is:
   (dang/generate-override-keymap dang/leader/def "c" "completions")
   (dang/generate-override-keymap dang/leader/def "f" "files")
   (dang/generate-override-keymap dang/leader/def "h" "help")
+  (dang/generate-override-keymap dang/leader/def "r" "registers")
   (dang/generate-override-keymap dang/leader/def "t" "text")
 
   (dang/buffers/def
@@ -148,6 +148,9 @@ The forms of the generated symbols is:
 
 ;; Enable various narrowing completion enabled commands
 (use-package counsel
+  :general
+  (dang/leader/def
+    "SPC" '(counsel-M-x :wk "execute-command"))
   :demand t)
 
 ;; Install and enable evil-mode to get vim emulation goodness
@@ -158,6 +161,10 @@ The forms of the generated symbols is:
         evil-want-integration t   ;; Make sure we can use evil pervasively
         evil-want-keybinding nil
         evil-disable-insert-state-bindings t)  ;; Disable default evilified keybindings so we can rely on evil-collection
+  :general
+  (dang/registers/def
+   "m" '(evil-record-macro :wk "record-macro")
+   "M" '(evil-execute-macro :wk "execute-macro"))
   :config
   ;; Ensure no major mode defaults to emacs or motion state unless explicitly specified
   (setq evil-emacs-state-modes nil
@@ -170,6 +177,27 @@ The forms of the generated symbols is:
   (evil-collection-setup-minibuffer t)
   :config
   (evil-collection-init))
+
+;; Bindings for undo tree
+(dang/text/def
+  "u" '(nil :wk "undo-tree")
+  "uv" '(undo-tree-visualize :wk "visualize")
+  "uu" '(undo-tree-undo :wk "undo")
+  "uU" '(undo-tree-redo :wk "redo"))
+
+(dang/registers/def
+  "u" '(undo-tree-save-state-to-register :wk "undo-save")
+  "U" '(undo-tree-restore-state-from-register :wk "undo-restore"))
+
+(general-define-key
+ :states '(normal motion)
+ :keymaps 'undo-tree-visualizer-mode-map
+ "h" 'undo-tree-visualize-switch-branch-left
+ "j" 'undo-tree-visualize-redo
+ "C-j" 'undo-tree-visualize-redo-to-x
+ "k" 'undo-tree-visualize-undo
+ "C-k" 'undo-tree-visualize-undo-to-x
+ "l" 'undo-tree-visualize-switch-branch-right)
 
 ;; Get Hydra for modal key-bindings
 (use-package hydra

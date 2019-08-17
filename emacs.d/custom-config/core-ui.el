@@ -164,6 +164,7 @@
 (dang/text/def
  "d" 'text-scale-decrease
  "i" 'text-scale-increase
+ "n" '(nil :wk "narrow")
  "n f" 'narrow-to-defun
  "n p" 'narrow-to-page
  "n r" 'narrow-to-region
