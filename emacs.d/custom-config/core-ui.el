@@ -70,13 +70,14 @@
 ;; Startup screen
 (use-package dashboard
   :init
-  (add-hook 'after-init-hook 'dashboard-refresh-buffer)
+  (add-hook 'after-init-hook #'dashboard-refresh-buffer)
   :config
   (dashboard-setup-startup-hook)
   (setq dashboard-set-heading-icons t
         dashboard-set-file-icons t
         dashboard-set-navigator t
         dashboard-set-init-info t
+        dashboard-center-content t
         initial-buffer-choice (lambda () (get-buffer "*dashboard*"))
         dashboard-items '((recents  . 5)
                           (projects . 5))))
