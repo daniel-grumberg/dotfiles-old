@@ -101,6 +101,12 @@ the frame and makes it a dedicated window for that buffer."
       (delete-window (get-buffer-window buffer))
       (kill-buffer buffer))))
 
+(defun dang/projectile-ace-find-file (&optional invalidate-cache)
+  "Jump to a project's file using completion using dang/ace-find-file as find-file replacmeent.
+With a prefix arg INVALIDATE-CACHE invalidates the cache first."
+  (interactive)
+  (projectile--find-file invalidate-cache #'dang/ace-find-file))
+
 ;; This cannot go in the :init section because use-package tries to generate the autoloads before the keymap exists?
 (dang/generate-override-keymap dang/leader/def "p" "project")
 (use-package projectile
@@ -112,7 +118,8 @@ the frame and makes it a dedicated window for that buffer."
    "C" '(projectile-configure-project :wk "configure")
    "d" '(dang/toggle-project-explorer :wk "toggle-explorer")
    "e" '(projectile-edit-dir-locals :wk "project-dir-locals")
-   "f" '(projectile-find-file :wk "project-find-file")
+   "f" '(dang/projectile-ace-find-file :wk "project-find-file")
+   "F" '(projectile-find-file :wk "project-find-file-current-window")
    "g" '(projectile-vc :wk "version-control")
    "I" '(projectile-invalidate-cache :wk "invalidate-project-cache")
    "k" '(projectile-kill-buffers :wk "kill-project-buffers")
