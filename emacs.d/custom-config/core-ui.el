@@ -155,9 +155,17 @@
    '(aw-leading-char-face
      ((t (:inherit ace-jump-face-foreground :height 3.0))))))
 
+;; Ensure we are allowed to use special narrowing commands
+(put 'narrow-to-region 'disabled nil)
+(put 'narrow-to-page 'disabled nil)
+
 ;; Add mappings for text display manipulation
 (dang/text/def
  "d" 'text-scale-decrease
- "i" 'text-scale-increase)
+ "i" 'text-scale-increase
+ "n f" 'narrow-to-defun
+ "n p" 'narrow-to-page
+ "n r" 'narrow-to-region
+ "N" 'widen)
 
 (provide 'dang/core-ui)

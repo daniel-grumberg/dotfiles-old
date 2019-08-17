@@ -130,6 +130,11 @@
   "c" '(org-capture :wk "capture")
   "i" '(dang/open-inbox :wk "open-inbox"))
 
+(dang/text/def 'org-mode-map
+  "n b" 'org-narrow-t-block
+  "n e" 'org-narrow-to-element
+  "n t" 'org-narrow-to-subtree)
+
 (dang/local/def 'org-mode-map
   "'" '(org-edit-special :wk "edit-special")
   "/" '(org-sparse-tree :wk "sparse-tree")
@@ -145,8 +150,6 @@
   "e" '(org-export-dispatch :wk "export")
   "f" '(org-set-effort :wk "set-effort")
   "i" '(org-clock-in :wk "clock-in")
-  "n" '(org-narrow-to-subtree :wk "narrow-to-subtree")
-  "N" '(widen :wk "widen")
   "o" '(org-clock-out :wk "clock-out")
   "p" '(org-set-property :wk "set-property")
   "q" '(org-clock-cancel :wk "clock-cancel")
