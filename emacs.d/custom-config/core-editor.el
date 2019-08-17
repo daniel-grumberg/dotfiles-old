@@ -154,9 +154,10 @@ The forms of the generated symbols is:
 (use-package evil
   :demand t
   :init
-  (setq evil-respect-visual-line-mode t)
-  (setq evil-want-integration t)   ;; Make sure we can use evil pervasively
-  (setq evil-want-keybinding nil)  ;; Disable default evilified keybindings so we can rely on evil-collection
+  (setq evil-respect-visual-line-mode t
+        evil-want-integration t   ;; Make sure we can use evil pervasively
+        evil-want-keybinding nil
+        evil-disable-insert-state-bindings t)  ;; Disable default evilified keybindings so we can rely on evil-collection
   :config
   ;; Ensure no major mode defaults to emacs or motion state unless explicitly specified
   (setq evil-emacs-state-modes nil
