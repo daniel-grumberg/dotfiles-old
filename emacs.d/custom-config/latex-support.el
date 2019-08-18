@@ -47,10 +47,6 @@
     (setq bibtex-completion-pdf-open-function
           (lambda (fpath)
             (call-process "mupdf" fpath))))
-  (setq bibtex-completion-bibliography '("~/bibliography/main.bib")
-        bibtex-completion-library-path '("~/bibliography/files")
-        bibtex-completion-pdf-field "File"
-        bibtex-completion-notes-path "~/bibliography/notes/"
-        ivy-bibtex-default-action 'ivy-bibtex-insert-citation))
+  (setq ivy-bibtex-default-action 'ivy-bibtex-insert-citation))
 
 (provide 'dang/latex-support)
