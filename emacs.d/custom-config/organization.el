@@ -1,5 +1,6 @@
 ;; Proper installation of org-mode
 (require 'org)
+(require 'dang/core-editor)
 
 (defun dang/open-inbox ()
   (interactive)
@@ -65,7 +66,7 @@
   "<f12>" 'org-agenda)
 
 (general-define-key
-  :states '(motion emacs)
+  :states '(motion emacs insert)
   :keymaps 'org-mode-map
   "M-h" 'org-metaleft
   "M-k" 'org-metaup
@@ -130,8 +131,8 @@
   "c" '(org-capture :wk "capture")
   "i" '(dang/open-inbox :wk "open-inbox"))
 
-(dang/text/def 'org-mode-map
-  "n b" 'org-narrow-t-block
+(dang/text/def org-mode-map
+  "n b" 'org-narrow-to-block
   "n e" 'org-narrow-to-element
   "n t" 'org-narrow-to-subtree)
 
