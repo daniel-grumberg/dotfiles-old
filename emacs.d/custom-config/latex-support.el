@@ -20,6 +20,7 @@
   :config
   (setq TeX-parse-self t
         TeX-auto-save t
+        TeX-master nil
         TeX-PDF-mode t
         TeX-source-correlate-start-server t
         TeX-source-correlate-method 'synctex
@@ -28,12 +29,11 @@
   (if (eq system-type 'darwin)
     (setq TeX-view-program-selection '((output-pdf "Skim"))
           TeX-view-program-list
-          '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
+          '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline %n %o %b")))
     (setq TeX-view-program-selection '((output-pdf "PDF Tools"))))
   (setcdr (assoc "BibTeX" TeX-command-list)
           '("bibtex --min-crossrefs=100 %s"
-            TeX-run-BibTeX nil t :help "Run BibTeX with ..."))
-  (setq-default TeX-master nil))
+            TeX-run-BibTeX nil t :help "Run BibTeX with ...")))
 
 (use-package ivy-bibtex
   :general
