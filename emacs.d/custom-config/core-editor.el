@@ -37,20 +37,12 @@
     :states '(motion normal visual insert emacs)
     :keymaps 'override
     :prefix "SPC"
-    :non-normal-prefix "M-SPC")
+    :non-normal-prefix "C-SPC")
 
   (dang/leader/def
     "TAB" '((lambda () (interactive) (switch-to-buffer (other-buffer))) :wk "previous-buffer")
     "k" 'save-buffers-kill-emacs
     "K" 'kill-emacs)
-
-  (general-create-definer dang/local/def
-    :states '(normal visual insert emacs)
-    :prefix "SPC l"
-    :non-normal-prefix "M-SPC l")
-
-  (dang/local/def
-    "" '(nil :wk "local"))
 
   (defmacro dang/generate-override-keymap (definer inf name)
     "Generate command, keymap and definer for global override editor prefixes
@@ -60,14 +52,11 @@ The forms of the generated symbols is:
 - keymap: dang/NAME/map
 - definer: dang/NAME/def"
     `(progn
-        (,definer
-          :infix ,inf
-          :prefix-command ',(intern (concat "dang/" name "/command"))
-          :prefix-map ',(intern (concat "dang/" name "/map"))
-          "" '(:ignore t :wk ,name))
-        (general-create-definer ,(intern (concat "dang/" name "/def"))
-          :keymaps ',(intern (concat "dang/" name "/map"))
-          :wk-full-keys nil)))
+       (general-create-definer ,(intern (concat "dang/" name "/def"))
+         :wrapping ,definer
+         :infix ,inf)
+       (,(intern (concat "dang/" name "/def"))
+        "" '(:ignore t :wk ,name))))
 
   ;; Cannot be looped as the NAME string needs to be the macro argument to be
   ;; able to generate the symbols
@@ -75,6 +64,7 @@ The forms of the generated symbols is:
   (dang/generate-override-keymap dang/leader/def "c" "completions")
   (dang/generate-override-keymap dang/leader/def "f" "files")
   (dang/generate-override-keymap dang/leader/def "h" "help")
+  (dang/generate-override-keymap dang/leader/def "l" "local")
   (dang/generate-override-keymap dang/leader/def "r" "registers")
   (dang/generate-override-keymap dang/leader/def "t" "text")
 
