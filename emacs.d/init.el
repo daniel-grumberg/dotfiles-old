@@ -39,7 +39,8 @@
     (dang/lsp-features . "lsp-features")
     (dang/terminal-support . "terminal-support")
     (dang/pdf-support . "pdf-support")
-    (dang/presentation-support . "presentation-support"))
+    (dang/presentation-support . "presentation-support")
+    (dang/docker-support . "docker-support"))
   "Association list of core features and filenames where to find them within the custom-config directory")
 
 (defvar dang/language-support-features
