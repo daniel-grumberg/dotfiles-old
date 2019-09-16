@@ -1,8 +1,8 @@
 #include ".Xresources.d/rxvt-unicode"
 
+Xft.autohint: 0
 Xft.antialias: true
 Xft.hinting: true
 Xft.rgba: rgb
-Xft.autohint: true
-Xft.hintstyle: hintfull
+Xft.hintstyle: hintslight
 Xft.lcdfilter: lcdnone
