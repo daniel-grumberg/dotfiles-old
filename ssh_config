@@ -34,6 +34,6 @@ User dg1814
 
 HOST kronos
 ProxyJump labs
-HostName 155.198.10.104
+HostName 155.198.193.180
 User dang
 Port 39901
