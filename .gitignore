@@ -10,6 +10,7 @@ setup.lock
 **/config/dconf
 **/config/enchant
 **/config/gtk*
+**/config/mimeapps.list
 emacs.d/straight/
 emacs.d/recentf
 emacs.d/bookmarks
