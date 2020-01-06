@@ -9,7 +9,8 @@
     :config
     (pdf-tools-install)
     (setq-default pdf-view-display-size 'fit-page)
-    (setq auto-revert-interval 0.5)
+    (setq auto-revert-interval 0.5
+          pdf-view-midnight-colors (cons (cdr (assoc "fg" plan9-colors-alist)) (cdr (assoc "bg" plan9-colors-alist))))
     (auto-revert-set-timer)))
 
 (provide 'dang/pdf-support)
