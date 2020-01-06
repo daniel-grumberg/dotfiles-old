@@ -40,5 +40,5 @@ then
     VBoxClient-All
 fi
 
-feh --randomize --bg-fill "$(xdg-user-dir PICTURES)/Wallpaper/"
+~/.fehbg &
 exec i3

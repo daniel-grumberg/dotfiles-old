@@ -2,7 +2,7 @@
 
 lock() {
     PICTURES=$(xdg-user-dir PICTURES)
-    i3lock -i "${PICTURES}/Lockscreen/Dune.png"
+    i3lock -i "${PICTURES}/Lockscreen/Yiddle.png"
 }
 
 case "$1" in
