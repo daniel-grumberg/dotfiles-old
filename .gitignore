@@ -1,6 +1,6 @@
 /vim/bundle/vimwiki/
-vim/.netrwhist
-setup.lock
+/vim/.netrwhist
+/setup.lock
 
 **/*.old
 **/*.log
@@ -11,12 +11,13 @@ setup.lock
 **/config/enchant
 **/config/gtk*
 **/config/mimeapps.list
-emacs.d/straight/
-emacs.d/recentf
-emacs.d/bookmarks
-emacs.d/.lsp-session*
-emacs.d/projectile-bookmarks.eld
-emacs.d/projectile.cache
-emacs.d/transient
-emacs.d/tramp
-emacs.d/eshell
+**/config/spotify/
+/emacs.d/straight/
+/emacs.d/recentf
+/emacs.d/bookmarks
+/emacs.d/.lsp-session*
+/emacs.d/projectile-bookmarks.eld
+/emacs.d/projectile.cache
+/emacs.d/transient
+/emacs.d/tramp
+/emacs.d/eshell
