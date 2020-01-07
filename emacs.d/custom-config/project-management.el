@@ -125,7 +125,7 @@ With a prefix arg INVALIDATE-CACHE invalidates the cache first."
    "k" '(projectile-kill-buffers :wk "kill-project-buffers")
    "p" '(projectile-switch-project :wk "open-project")
    "t" '(projectile-test-project :wk "test")
-   "/" '(projectile-grep :wk "grep"))
+   "/" '(projectile-ripgrep :wk "grep"))
   :config
   (setq projectile-completion-system 'ivy
         projectile-enable-caching t)

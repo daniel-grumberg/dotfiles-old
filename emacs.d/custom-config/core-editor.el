@@ -213,4 +213,6 @@ The forms of the generated symbols is:
     "o" 'company-other-backend)
   :hook ((after-init . global-company-mode)))
 
+(use-package ripgrep)
+
 (provide 'dang/core-editor)
