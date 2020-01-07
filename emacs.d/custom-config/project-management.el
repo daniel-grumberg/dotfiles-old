@@ -129,6 +129,7 @@ With a prefix arg INVALIDATE-CACHE invalidates the cache first."
   :config
   (setq projectile-completion-system 'ivy
         projectile-enable-caching t)
+  (add-to-list 'projectile-globally-ignored-directories ".ccls-cache")
   (projectile-mode 1))
 
 (use-package nameframe
