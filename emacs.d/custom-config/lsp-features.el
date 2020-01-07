@@ -21,7 +21,9 @@
         lsp-enable-indentation t
         lsp-enable-snippet t
         lsp-prefer-flymake nil
-        lsp-auto-configure t))
+        lsp-file-watch-threshold nil
+        lsp-auto-configure t)
+  (add-to-list 'lsp-file-watch-ignored ".ccls-cache"))
 
 (use-package lsp-ui
   :commands lsp-ui-mode
