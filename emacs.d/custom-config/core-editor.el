@@ -127,10 +127,11 @@ The forms of the generated symbols is:
     "g" '(ivy-switch-buffer :wk "goto-buffer"))
   :config
   (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-  (setq ivy-count-format "(%d/%d) ")
-  (setq ivy-wrap t))
+  (setq ivy-use-virtual-buffers t
+        enable-recursive-minibuffers t
+        ivy-count-format "(%d/%d) "
+        ivy-use-selectable-prompt t
+        ivy-wrap t))
 
 ;; Enable narrowing completion optimized incremental search
 (use-package swiper
