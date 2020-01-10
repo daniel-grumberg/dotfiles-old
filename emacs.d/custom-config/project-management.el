@@ -60,7 +60,7 @@ the kill-ring"
    "<enter>" 'dang/dwim-toggle-or-open
    "<return>" 'dang/dwim-toggle-or-open
    "<tab>" 'dang/dwim-toggle-or-open
-   "h" 'dang/open-ace-vertival-split
+   "h" 'dang/open-ace-vertical-split
    "o" 'dang/dwim-toggle-or-open
    "v" 'dang/open-ace-horizontal-split
    "yr" 'dang/dired-copy-path-to-root
