@@ -29,4 +29,14 @@
 (use-package cmake-font-lock
   :hook ((cmake-mode . cmake-font-lock-activate)))
 
+(use-package helm-make
+  :config
+  (setq helm-make-completion-method 'ivy
+        helm-make-do-save t)
+  (when (not(eq system-type 'darwin))
+    (setq helm-make-nproc 0))
+  :general
+  (dang/local/def c-mode-base-map
+    "c" '(helm-make-projectile :wk "make")))
+
 (provide 'dang/c-c++-support)
