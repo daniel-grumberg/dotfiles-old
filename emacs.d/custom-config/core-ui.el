@@ -86,7 +86,7 @@
 (setq split-width-threshold 120)
 ;; Windows should be able to be resized
 (setq fit-window-to-buffer-horizontally t)
-;;Ensure side windows maitain their respective sizes
+;;Ensure side windows maintain their respective sizes
 (setq window-resize-pixelwise t)
 (setq display-buffer-alist
       `(("\\*compilation\\*" display-buffer-in-side-window
