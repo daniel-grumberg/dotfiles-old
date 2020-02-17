@@ -41,5 +41,4 @@ then
 fi
 
 ~/.fehbg &
-redshift &
 exec i3
