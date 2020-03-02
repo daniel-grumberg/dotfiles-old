@@ -13,4 +13,8 @@
           pdf-view-midnight-colors (cons (cdr (assoc "fg" plan9-colors-alist)) (cdr (assoc "bg" plan9-colors-alist))))
     (auto-revert-set-timer)))
 
+(push
+ `("\\.pdf\\(<[^>]+>\\)?$" display-buffer-in-side-window
+   (side . right) (slot . -100) (window-width . fit-window-to-buffer)) display-buffer-alist)
+
 (provide 'dang/pdf-support)
