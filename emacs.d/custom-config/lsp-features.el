@@ -1,7 +1,6 @@
 (use-package flycheck)
 
 (use-package lsp-mode
-  :commands lsp
   :general
   (dang/help/def
     :predicate '(lsp-mode)
@@ -34,5 +33,13 @@
   :config
   (push 'company-lsp company-backends)
   (setq company-transformers nil company-lsp-async t company-lsp-cache-candidates nil))
+
+(use-package lsp-ivy
+  :straight (lsp-ivy :type git :host github :repo "emacs-lsp/lsp-ivy")
+  :commands (lsp-ivy-workspace-symbol lsp-ivy-global-workspace-symbol)
+  :general
+  (dang/local/def lsp-mode-map
+    "s" '(lsp-ivy-workspace-symbol :wk "lsp-workspace-symbol")
+    "S" '(lsp-ivy-global-workspace-symbol :wk "lsp-global-workspace-symbol")))
 
 (provide 'dang/lsp-features)
