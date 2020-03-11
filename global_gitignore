@@ -6,6 +6,7 @@
 #############
 .ccls-cache/
 compile_commands.json
+.clangd/
 
 # Compiled source #
 ###################
