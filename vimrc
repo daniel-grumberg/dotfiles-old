@@ -31,10 +31,10 @@ map j gj
 map k gk
 
 "Proper tab handling
-set tabstop=4
-set softtabstop=4
+set tabstop=2
+set softtabstop=2
 set smarttab
-set shiftwidth=4
+set shiftwidth=2
 set expandtab
 set smartindent
 "set cindent
@@ -77,14 +77,6 @@ autocmd BufRead,BufNewFile * syntax match Tab /\t/ containedin=ALL
 
 "Makes the screen dark
 highlight Normal ctermbg=None
-
-map j gj
-map k gk
-map 0 ^
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
 
 "Vimwiki stuff
 let wiki_1 = {}
