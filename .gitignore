@@ -13,6 +13,7 @@
 **/config/mimeapps.list
 **/config/spotify/
 /emacs.d/straight/
+/emacs.d/elpa/
 /emacs.d/recentf
 /emacs.d/bookmarks
 /emacs.d/.lsp-session*
