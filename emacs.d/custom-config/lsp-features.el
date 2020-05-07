@@ -22,7 +22,10 @@
         lsp-prefer-flymake nil
         lsp-file-watch-threshold nil
         lsp-auto-configure t)
-  (add-to-list 'lsp-file-watch-ignored ".ccls-cache"))
+  (when (equal system-type 'darwin)
+    (add-to-list 'exec-path
+                 (file-name-directory (shell-command-to-string "xcrun -f clangd"))
+                 1)))
 
 (use-package lsp-ui
   :commands lsp-ui-mode
