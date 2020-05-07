@@ -47,6 +47,7 @@
   '((dang/c-c++-support . "c-c++-support")
     (dang/latex-support . "latex-support")
     (dang/llvm-support . "llvm-support")
+    (dang/tablegen-support . "tablegen-support")
     (dang/z3-support . "z3-support"))
   "Association list of language support features and filenames where to find them within the custom-config directory")
 
