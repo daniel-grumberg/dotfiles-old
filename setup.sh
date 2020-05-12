@@ -26,7 +26,7 @@ function canonicalize {
     echo "${PHYS_DIR}/${TARGET_FILE}"
 }
 
-DOTFILES=$(dirname -- $(realpath "$(canonicalize)"))
+DOTFILES=$(dirname "$(canonicalize)")
 
 if [[ -e "${DOTFILES}/setup.lock" ]]
 then
