@@ -6,7 +6,8 @@
 
 (setq-default indent-tabs-mode nil)
 
-(add-hook 'before-save-hook #'delete-trailing-whitespace)
+(use-package ws-butler
+  :hook (prog-mode . ws-butler-mode))
 
 (add-hook 'prog-mode-hook '(lambda () (display-line-numbers-mode 1)))
 (add-hook 'text-mode-hook '(lambda () (display-line-numbers-mode 1)))
