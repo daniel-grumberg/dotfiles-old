@@ -42,3 +42,4 @@ export CLICOLOR=1
 ########################################################################################################################
 
 export LLVM_COMPILER="clang"
+export PATH="$PATH:$HOME/bin/arcanist/bin"
