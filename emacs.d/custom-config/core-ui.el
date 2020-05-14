@@ -108,6 +108,8 @@
                    (get-buffer-create "*compilation*"))
                   (message "No Compilation Errors!")))))
 
+(setq compilation-scroll-output t)
+
 (dang/generate-override-keymap dang/leader/def "w" "windows")
 (dang/windows/def
   "b" 'balance-windows
